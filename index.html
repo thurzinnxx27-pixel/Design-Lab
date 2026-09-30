@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎈 Dia das Crianças - Campanha de Brinquedos</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎈</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+            padding-bottom: 40px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #FF6B6B, #FFB84D, #FFD93D);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '🎈🎁🎉🎊🧸🎨🎪🎠';
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            font-size: 20px;
+            opacity: 0.3;
+            letter-spacing: 30px;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: white;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        header p {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.95;
+            position: relative;
+        }
+
+        .header-emoji {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        /* ===== STATS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-card .emoji {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .stat-card .number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #764ba2;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: #764ba2;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ===== PESQUISA ===== */
+        .search-box {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: 3px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #764ba2;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+        }
+
+        .search-box .icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            pointer-events: none;
+        }
+
+        /* ===== RANKING ===== */
+        .ranking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+            border-radius: 12px;
+            border-left: 5px solid #FFD93D;
+            transition: all 0.3s ease;
+            animation: slideIn 0.4s ease;
+        }
+
+        .ranking-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .ranking-item .posicao {
+            font-size: 22px;
+            font-weight: 800;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .ranking-item .posicao.ouro { color: #FFD700; }
+        .ranking-item .posicao.prata { color: #C0C0C0; }
+        .ranking-item .posicao.bronze { color: #CD7F32; }
+
+        .ranking-item .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B6B, #FFB84D);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .ranking-item .info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ranking-item .nome {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .ranking-item .brinquedos {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .ranking-item .pontos {
+            font-size: 20px;
+            font-weight: 800;
+            color: #764ba2;
+            text-align: right;
+        }
+
+        .ranking-item .pontos small {
+            display: block;
+            font-size: 10px;
+            color: #999;
+            font-weight: 600;
+        }
+
+        .ranking-item.destaque {
+            background: linear-gradient(135deg, #FFF9E6, #FFEBB3);
+            border-left-color: #FF6B6B;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .ranking-item.destaque .nome {
+            color: #764ba2;
+        }
+
+        /* ===== ADMIN ===== */
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f44336, #e91e63);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #764ba2;
+            border: 2px solid #764ba2;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: #764ba2;
+            color: white;
+        }
+
+        .action-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { transform: scale(0.9) translateY(-20px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: white;
+            padding: 20px 24px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 18px;
+            color: white;
+            margin: 0;
+        }
+
+        .modal-header .close {
+            font-size: 28px;
+            cursor: pointer;
+            color: white;
+            line-height: 1;
+        }
+
+        .modal-header .close:hover {
+            transform: rotate(90deg);
+            transition: all 0.3s ease;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 500px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel {
+            background: #f0f0f0;
+            color: #666;
+            border: none;
+        }
+
+        .btn-cancel:hover {
+            background: #e0e0e0;
+        }
+
+        /* ===== LOGIN ADMIN ===== */
+        .login-modal .modal-content {
+            max-width: 380px;
+        }
+
+        .login-body {
+            text-align: center;
+            padding: 30px 24px;
+        }
+
+        .login-body .emoji {
+            font-size: 60px;
+            margin-bottom: 12px;
+        }
+
+        .login-body h3 {
+            color: #764ba2;
+            margin-bottom: 8px;
+        }
+
+        .login-body p {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== AVISO ADMIN ===== */
+        .admin-banner {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .admin-banner .text {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ===== MODO VISITANTE ===== */
+        .visitor-banner {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+            font-size: 13px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        footer .heart {
+            color: #FF6B6B;
+            animation: pulse 1.2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* ===== ADMIN FLOATING BUTTON ===== */
+        .admin-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .admin-float:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px;
+            }
+            header p {
+                font-size: 14px;
+            }
+            .header-emoji {
+                font-size: 32px;
+            }
+            .card {
+                padding: 18px;
+            }
+            .ranking-item {
+                padding: 12px 14px;
+                gap: 10px;
+            }
+            .ranking-item .avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .ranking-item .nome {
+                font-size: 14px;
+            }
+            .ranking-item .pontos {
+                font-size: 17px;
+            }
+            .admin-actions button {
+                flex: 1;
+                min-width: 140px;
+            }
+        }
+
+        /* ===== SEM RESULTADOS ===== */
+        .empty-msg {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+            font-size: 15px;
+        }
+
+        /* ===== NOTIFICAÇÃO ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #333;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 2000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #f44336, #e91e63);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <span class="header-emoji">🎈🎁🧸🎨</span>
+        <h1>Dia das Crianças Solidário</h1>
+        <p>Doe brinquedos e ganhe pontos! Faça uma criança feliz 💖</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Banner Visitante -->
+        <div id="visitorBanner" class="visitor-banner">
+            👋 Bem-vindo(a)! Você está no modo <strong>Visitante</strong>. Pesquise seu nome para ver seus pontos!
+        </div>
+
+        <!-- Banner Admin -->
+        <div id="adminBanner" class="admin-banner" style="display:none;">
+            <span class="text">🔓 Modo Administrador Ativo</span>
+            <button onclick="sairAdmin()" class="btn-outline" style="color:white;border-color:white;padding:6px 14px;font-size:12px;">🔒 Sair do Admin</button>
+        </div>
+
+        <!-- ===== STATS ===== -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="emoji">👥</span>
+                <span class="number" id="totalDoadores">0</span>
+                <span class="label">Doadores</span>
+            </div>
+            <div class="stat-card">
+                <span class="emoji">🧸</span>
+                <span class="number" id="totalBrinquedos">0</span>
+                <span class="label">Brinquedos</span>
+            </div>
+            <div class="stat-card">
+                <span class="emoji">⭐</span>
+                <span class="number" id="totalPontos">0</span>
+                <span class="label">Pontos Totais</span>
+            </div>
+        </div>
+
+        <!-- ===== PESQUISA ===== -->
+        <div class="card">
+            <h2>🔍 Pesquisar Doador</h2>
+            <div class="search-box">
+                <input type="text" id="buscaInput" placeholder="Digite seu nome para ver seus pontos..." oninput="pesquisar()">
+                <span class="icon">🔍</span>
+            </div>
+        </div>
+
+        <!-- ===== ADMIN AÇÕES ===== -->
+        <div class="card" id="adminCard" style="display:none;">
+            <h2>⚙️ Gerenciar Doadores</h2>
+            <div class="admin-actions">
+                <button onclick="abrirModalDoador()" class="btn-primary">➕ Adicionar Doador</button>
+                <button onclick="exportarDados()" class="btn-success">📤 Exportar Backup</button>
+                <button onclick="importarDados()" class="btn-outline">📥 Importar Backup</button>
+                <button onclick="limparTudo()" class="btn-danger" style="padding:12px 24px;">🗑️ Limpar Tudo</button>
+            </div>
+        </div>
+
+        <!-- ===== RANKING ===== -->
+        <div class="card">
+            <h2>🏆 Ranking de Doadores</h2>
+            <div class="ranking-list" id="rankingList">
+                <p class="empty-msg">Nenhum doador cadastrado ainda. Seja o primeiro! 🎁</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== BOTÃO ADMIN FLUTUANTE ===== -->
+    <button id="adminFloat" class="admin-float" onclick="abrirLoginAdmin()" title="Acesso Administrador">🔐</button>
+
+    <!-- ===== MODAL DOADOR ===== -->
+    <div id="modalDoador" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalDoadorTitulo">➕ Adicionar Doador</h2>
+                <span class="close" onclick="fecharModal('modalDoador')">&times;</span>
+            </div>
+            <form id="formDoador">
+                <div class="modal-body">
+                    <input type="hidden" id="doadorId">
+                    <div class="form-group">
+                        <label>Nome do Doador *</label>
+                        <input type="text" id="doadorNome" placeholder="Ex: Maria Silva" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Quantidade de Brinquedos *</label>
+                            <input type="number" id="doadorBrinquedos" placeholder="0" min="0" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Pontos por Brinquedo *</label>
+                            <input type="number" id="doadorPontosPorItem" placeholder="10" min="1" value="10" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Pontos Totais (calculado)</label>
+                        <input type="text" id="doadorPontosTotal" value="0" readonly style="background:#f9f9f9;font-weight:800;color:#764ba2;">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="fecharModal('modalDoador')" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-primary">💾 Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== MODAL LOGIN ADMIN ===== -->
+    <div id="modalLogin" class="modal login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 Acesso Administrador</h2>
+                <span class="close" onclick="fecharModal('modalLogin')">&times;</span>
+            </div>
+            <div class="login-body">
+                <div class="emoji">🔒</div>
+                <h3>Área Restrita</h3>
+                <p>Digite a senha para gerenciar os doadores</p>
+                <div class="form-group">
+                    <input type="password" id="senhaAdmin" placeholder="Senha de administrador" autocomplete="current-password">
+                </div>
+                <div id="erroSenha" style="color:#f44336;font-size:13px;min-height:20px;margin-bottom:8px;"></div>
+                <button onclick="verificarSenha()" class="btn-primary" style="width:100%;padding:14px;">Entrar</button>
+                <p style="font-size:11px;color:#999;margin-top:16px;">💡 Senha padrão: <strong>admin123</strong> (altere no código)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        Feito com <span class="heart">❤️</span> para o Dia das Crianças<br>
+        <span style="font-size:11px;opacity:0.8;">Campanha de Arrecadação de Brinquedos</span>
+    </footer>
+
+    <script>
+        // =============================================
+        // CAMPANHA DIA DAS CRIANÇAS
+        // =============================================
+
+        // ===== CONFIGURAÇÕES =====
+        const SENHA_ADMIN = 'admin123'; // 🔑 ALTERE AQUI PARA A SUA SENHA
+        const STORAGE_KEY = 'campanhaBrinquedos';
+
+        // ===== ESTADO =====
+        let doadores = [];
+        let modoAdmin = false;
+
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarDados();
+            renderizarRanking();
+            atualizarStats();
+
+            // Verifica se está no modo admin via URL (?admin=1)
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('admin') === '1') {
+                abrirLoginAdmin();
+            }
+
+            // Enter no campo de senha
+            document.getElementById('senhaAdmin').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') verificarSenha();
+            });
+
+            // Calcula pontos automaticamente
+            document.getElementById('doadorBrinquedos').addEventListener('input', calcularPontos);
+            document.getElementById('doadorPontosPorItem').addEventListener('input', calcularPontos);
+        });
+
+        // ===== CARREGAR DADOS =====
+        function carregarDados() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    doadores = JSON.parse(saved);
+                } else {
+                    doadores = [];
+                }
+            } catch (e) {
+                doadores = [];
+            }
+        }
+
+        // ===== SALVAR DADOS =====
+        function salvarDados() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(doadores));
+            } catch (e) {
+                console.error('Erro ao salvar:', e);
+            }
+        }
+
+        // ===== CALCULAR PONTOS =====
+        function calcularPontos() {
+            const brinquedos = parseInt(document.getElementById('doadorBrinquedos').value) || 0;
+            const pontosPorItem = parseInt(document.getElementById('doadorPontosPorItem').value) || 0;
+            const total = brinquedos * pontosPorItem;
+            document.getElementById('doadorPontosTotal').value = total;
+        }
+
+        // ===== ATUALIZAR STATS =====
+        function atualizarStats() {
+            const totalDoadores = doadores.length;
+            const totalBrinquedos = doadores.reduce((acc, d) => acc + (d.brinquedos || 0), 0);
+            const totalPontos = doadores.reduce((acc, d) => acc + (d.pontos || 0), 0);
+
+            document.getElementById('totalDoadores').textContent = totalDoadores;
+            document.getElementById('totalBrinquedos').textContent = totalBrinquedos;
+            document.getElementById('totalPontos').textContent = totalPontos;
+        }
+
+        // ===== RENDERIZAR RANKING =====
+        function renderizarRanking(filtro = '') {
+            const container = document.getElementById('rankingList');
+            let lista = [...doadores];
+
+            // Filtra se tiver busca
+            if (filtro) {
+                const f = filtro.toLowerCase();
+                lista = lista.filter(d => d.nome.toLowerCase().includes(f));
+            }
+
+            // Ordena por pontos (maior primeiro)
+            lista.sort((a, b) => (b.pontos || 0) - (a.pontos || 0));
+
+            if (lista.length === 0) {
+                if (filtro) {
+                    container.innerHTML = `<p class="empty-msg">😕 Nenhum doador encontrado com "<strong>${filtro}</strong>"</p>`;
+                } else {
+                    container.innerHTML = `<p class="empty-msg">Nenhum doador cadastrado ainda. Seja o primeiro! 🎁</p>`;
+                }
+                return;
+            }
+
+            container.innerHTML = lista.map((d, idx) => {
+                const posicao = idx + 1;
+                let posicaoClass = '';
+                let medalha = `${posicao}º`;
+
+                if (!filtro) {
+                    if (posicao === 1) {
+                        posicaoClass = 'ouro';
+                        medalha = '🥇';
+                    } else if (posicao === 2) {
+                        posicaoClass = 'prata';
+                        medalha = '🥈';
+                    } else if (posicao === 3) {
+                        posicaoClass = 'bronze';
+                        medalha = '🥉';
+                    }
+                }
+
+                const inicial = d.nome.charAt(0).toUpperCase();
+                const destaque = filtro && d.nome.toLowerCase().includes(filtro.toLowerCase()) ? 'destaque' : '';
+                const emojiAleatorio = ['🧸', '🎁', '🎨', '🎪', '🎠', '🎯', '🪀', '🧩'][d.nome.length % 8];
+
+                return `
+                    <div class="ranking-item ${destaque}">
+                        <span class="posicao ${posicaoClass}">${medalha}</span>
+                        <div class="avatar">${inicial}</div>
+                        <div class="info">
+                            <div class="nome">${d.nome}</div>
+                            <div class="brinquedos">${emojiAleatorio} ${d.brinquedos} brinquedo(s) doado(s)</div>
+                        </div>
+                        <div class="pontos">
+                            ${d.pontos}
+                            <small>pontos</small>
+                        </div>
+                        ${modoAdmin ? `
+                            <div style="display:flex;gap:4px;">
+                                <button class="action-btn" onclick="editarDoador('${d.id}')" title="Editar">✏️</button>
+                                <button class="action-btn" onclick="excluirDoador('${d.id}')" title="Excluir">🗑️</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ===== PESQUISAR =====
+        function pesquisar() {
+            const filtro = document.getElementById('buscaInput').value.trim();
+            renderizarRanking(filtro);
+        }
+
+        // ===== MODAIS =====
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('show');
+        }
+
+        function fecharModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        // Fecha modal clicando fora
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+        });
+
+        // ===== ABRIR MODAL DOADOR =====
+        function abrirModalDoador() {
+            document.getElementById('doadorId').value = '';
+            document.getElementById('doadorNome').value = '';
+            document.getElementById('doadorBrinquedos').value = 1;
+            document.getElementById('doadorPontosPorItem').value = 10;
+            document.getElementById('doadorPontosTotal').value = 10;
+            document.getElementById('modalDoadorTitulo').textContent = '➕ Adicionar Doador';
+            abrirModal('modalDoador');
+        }
+
+        // ===== EDITAR DOADOR =====
+        function editarDoador(id) {
+            const d = doadores.find(x => x.id === id);
+            if (!d) return;
+
+            document.getElementById('doadorId').value = d.id;
+            document.getElementById('doadorNome').value = d.nome;
+            document.getElementById('doadorBrinquedos').value = d.brinquedos || 0;
+            document.getElementById('doadorPontosPorItem').value = d.pontosPorItem || 10;
+            document.getElementById('doadorPontosTotal').value = d.pontos || 0;
+            document.getElementById('modalDoadorTitulo').textContent = '✏️ Editar Doador';
+            abrirModal('modalDoador');
+        }
+
+        // ===== EXCLUIR DOADOR =====
+        function excluirDoador(id) {
+            if (!confirm('Tem certeza que deseja excluir este doador?')) return;
+
+            doadores = doadores.filter(d => d.id !== id);
+            salvarDados();
+            renderizarRanking(document.getElementById('buscaInput').value.trim());
+            atualizarStats();
+            mostrarToast('✅ Doador excluído com sucesso!', 'success');
+        }
+
+        // ===== SALVAR FORMULÁRIO =====
+        document.getElementById('formDoador').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('doadorId').value;
+            const nome = document.getElementById('doadorNome').value.trim();
+            const brinquedos = parseInt(document.getElementById('doadorBrinquedos').value) || 0;
+            const pontosPorItem = parseInt(document.getElementById('doadorPontosPorItem').value) || 0;
+            const pontos = brinquedos * pontosPorItem;
+
+            if (!nome) {
+                mostrarToast('❌ Digite o nome do doador', 'error');
+                return;
+            }
+
+            if (brinquedos <= 0) {
+                mostrarToast('❌ A quantidade de brinquedos deve ser maior que 0', 'error');
+                return;
+            }
+
+            if (id) {
+                // Editar
+                const idx = doadores.findIndex(d => d.id === id);
+                if (idx !== -1) {
+                    doadores[idx] = { ...doadores[idx], nome, brinquedos, pontosPorItem, pontos };
+                }
+                mostrarToast('✅ Doador atualizado!', 'success');
+            } else {
+                // Adicionar
+                doadores.push({
+                    id: 'doador_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+                    nome,
+                    brinquedos,
+                    pontosPorItem,
+                    pontos
+                });
+                mostrarToast('✅ Doador adicionado!', 'success');
+            }
+
+            salvarDados();
+            fecharModal('modalDoador');
+            renderizarRanking(document.getElementById('buscaInput').value.trim());
+            atualizarStats();
+        });
+
+        // ===== LOGIN ADMIN =====
+        function abrirLoginAdmin() {
+            if (modoAdmin) {
+                mostrarToast('🔓 Você já está no modo Admin', 'success');
+                return;
+            }
+            document.getElementById('senhaAdmin').value = '';
+            document.getElementById('erroSenha').textContent = '';
+            abrirModal('modalLogin');
+            setTimeout(() => document.getElementById('senhaAdmin').focus(), 300);
+        }
+
+        function verificarSenha() {
+            const senha = document.getElementById('senhaAdmin').value;
+            const erro = document.getElementById('erroSenha');
+
+            if (senha === SENHA_ADMIN) {
+                modoAdmin = true;
+                fecharModal('modalLogin');
+                atualizarModoAdmin();
+                mostrarToast('🔓 Modo Administrador ativado!', 'success');
+            } else {
+                erro.textContent = '❌ Senha incorreta. Tente novamente.';
+                document.getElementById('senhaAdmin').value = '';
+                document.getElementById('senhaAdmin').focus();
+            }
+        }
+
+        function sairAdmin() {
+            modoAdmin = false;
+            atualizarModoAdmin();
+            mostrarToast('🔒 Você saiu do modo Admin', 'success');
+        }
+
+        function atualizarModoAdmin() {
+            const visitorBanner = document.getElementById('visitorBanner');
+            const adminBanner = document.getElementById('adminBanner');
+            const adminCard = document.getElementById('adminCard');
+            const adminFloat = document.getElementById('adminFloat');
+
+            if (modoAdmin) {
+                visitorBanner.style.display = 'none';
+                adminBanner.style.display = 'flex';
+                adminCard.style.display = 'block';
+                adminFloat.style.display = 'none';
+            } else {
+                visitorBanner.style.display = 'block';
+                adminBanner.style.display = 'none';
+                adminCard.style.display = 'none';
+                adminFloat.style.display = 'block';
+            }
+
+            renderizarRanking(document.getElementById('buscaInput').value.trim());
+        }
+
+        // ===== EXPORTAR / IMPORTAR =====
+        function exportarDados() {
+            const dataStr = JSON.stringify(doadores, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `campanha_brinquedos_${new Date().toISOString().slice(0,10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            mostrarToast('📤 Backup exportado!', 'success');
+        }
+
+        function importarDados() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        const imported = JSON.parse(ev.target.result);
+                        if (Array.isArray(imported)) {
+                            if (confirm('Isso vai substituir todos os dados. Continuar?')) {
+                                doadores = imported;
+                                salvarDados();
+                                renderizarRanking();
+                                atualizarStats();
+                                mostrarToast('✅ Dados importados!', 'success');
+                            }
+                        } else {
+                            mostrarToast('❌ Arquivo inválido', 'error');
+                        }
+                    } catch (err) {
+                        mostrarToast('❌ Erro ao importar: ' + err.message, 'error');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        function limparTudo() {
+            if (!confirm('⚠️ Tem certeza que deseja apagar TODOS os doadores? Essa ação não pode ser desfeita!')) return;
+            if (!confirm('⚠️ Confirme mais uma vez: apagar TUDO?')) return;
+
+            doadores = [];
+            salvarDados();
+            renderizarRanking();
+            atualizarStats();
+            document.getElementById('buscaInput').value = '';
+            mostrarToast('🗑️ Todos os dados foram apagados', 'success');
+        }
+
+        // ===== TOAST =====
+        function mostrarToast(msg, tipo = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.className = 'toast ' + tipo;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ===== CONSOLE =====
+        console.log('🎈 Campanha Dia das Crianças carregada!');
+        console.log(`👥 ${doadores.length} doadores cadastrados`);
+        console.log(`🔑 Senha admin padrão: ${SENHA_ADMIN}`);
+        console.log('💡 Acesse ?admin=1 na URL para abrir o login automaticamente');
+    </script>
+
+</body>
+</html>
