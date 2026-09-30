@@ -6,12 +6,7 @@
     <title>🎈 Dia das Crianças - Campanha de Brinquedos</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎈</text></svg>">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
@@ -20,655 +15,211 @@
             color: #333;
             padding-bottom: 40px;
         }
-
-        /* ===== HEADER ===== */
         header {
             background: linear-gradient(135deg, #FF6B6B, #FFB84D, #FFD93D);
             padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             position: relative;
             overflow: hidden;
         }
-
         header::before {
             content: '🎈🎁🎉🎊🧸🎨🎪🎠';
-            position: absolute;
-            top: 5px;
-            left: 0;
-            right: 0;
-            font-size: 20px;
-            opacity: 0.3;
-            letter-spacing: 30px;
+            position: absolute; top: 5px; left: 0; right: 0;
+            font-size: 20px; opacity: 0.3; letter-spacing: 30px;
         }
-
-        header h1 {
-            font-size: 36px;
-            color: white;
-            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
-            margin-bottom: 8px;
-            position: relative;
-        }
-
-        header p {
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
-            opacity: 0.95;
-            position: relative;
-        }
-
-        .header-emoji {
-            font-size: 40px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        /* ===== CONTAINER ===== */
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 16px;
-        }
-
-        /* ===== STATS ===== */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px 16px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .stat-card .emoji {
-            font-size: 32px;
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .stat-card .number {
-            font-size: 28px;
-            font-weight: 800;
-            color: #764ba2;
-            display: block;
-        }
-
-        .stat-card .label {
-            font-size: 12px;
-            color: #666;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ===== CARD ===== */
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .card h2 {
-            font-size: 20px;
-            color: #764ba2;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* ===== PESQUISA ===== */
-        .search-box {
-            position: relative;
-            margin-bottom: 16px;
-        }
-
+        header h1 { font-size: 36px; color: white; text-shadow: 3px 3px 0 rgba(0,0,0,0.2); margin-bottom: 8px; position: relative; }
+        header p { color: white; font-size: 16px; font-weight: 500; opacity: 0.95; position: relative; }
+        .header-emoji { font-size: 40px; display: block; margin-bottom: 10px; }
+        .container { max-width: 900px; margin: 20px auto; padding: 0 16px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+        .stat-card { background: white; border-radius: 16px; padding: 20px 16px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .stat-card:hover { transform: translateY(-4px); }
+        .stat-card .emoji { font-size: 32px; display: block; margin-bottom: 6px; }
+        .stat-card .number { font-size: 28px; font-weight: 800; color: #764ba2; display: block; }
+        .stat-card .label { font-size: 12px; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .card h2 { font-size: 20px; color: #764ba2; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .search-box { position: relative; margin-bottom: 12px; }
         .search-box input {
-            width: 100%;
-            padding: 16px 50px 16px 20px;
-            border: 3px solid #e0e0e0;
-            border-radius: 50px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #f9f9f9;
+            width: 100%; padding: 16px 50px 16px 20px;
+            border: 3px solid #e0e0e0; border-radius: 50px;
+            font-size: 16px; transition: all 0.3s ease; background: #f9f9f9;
         }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #764ba2;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+        .search-box input:focus { outline: none; border-color: #764ba2; background: white; box-shadow: 0 0 0 4px rgba(118,75,162,0.1); }
+        .search-box .icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; pointer-events: none; }
+        .filtros { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+        .filtros label { font-size: 13px; font-weight: 700; color: #666; }
+        .filtros select {
+            padding: 10px 16px; border: 2px solid #e0e0e0; border-radius: 50px;
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: white;
         }
-
-        .search-box .icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 22px;
-            pointer-events: none;
+        .filtros select:focus { outline: none; border-color: #764ba2; }
+        .filtros .btn-limpar {
+            padding: 10px 16px; border: 2px solid #f44336; border-radius: 50px;
+            background: white; color: #f44336; font-size: 13px; font-weight: 700; cursor: pointer;
         }
-
-        /* ===== RANKING ===== */
-        .ranking-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
+        .filtros .btn-limpar:hover { background: #f44336; color: white; }
+        .ranking-list { display: flex; flex-direction: column; gap: 10px; }
         .ranking-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
+            display: flex; align-items: center; gap: 14px;
             padding: 14px 18px;
             background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
-            border-radius: 12px;
-            border-left: 5px solid #FFD93D;
-            transition: all 0.3s ease;
-            animation: slideIn 0.4s ease;
+            border-radius: 12px; border-left: 5px solid #FFD93D;
+            transition: all 0.3s ease; animation: slideIn 0.4s ease;
         }
-
-        .ranking-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .ranking-item .posicao {
-            font-size: 22px;
-            font-weight: 800;
-            min-width: 40px;
-            text-align: center;
-        }
-
+        .ranking-item:hover { transform: translateX(4px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .ranking-item .posicao { font-size: 22px; font-weight: 800; min-width: 40px; text-align: center; }
         .ranking-item .posicao.ouro { color: #FFD700; }
         .ranking-item .posicao.prata { color: #C0C0C0; }
         .ranking-item .posicao.bronze { color: #CD7F32; }
-
         .ranking-item .avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+            width: 45px; height: 45px; border-radius: 50%;
             background: linear-gradient(135deg, #FF6B6B, #FFB84D);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: white;
-            font-weight: 700;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: white; font-weight: 700; flex-shrink: 0;
         }
-
-        .ranking-item .info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .ranking-item .nome {
-            font-size: 16px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 2px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .ranking-item .brinquedos {
-            font-size: 12px;
-            color: #888;
-        }
-
-        .ranking-item .pontos {
-            font-size: 20px;
-            font-weight: 800;
-            color: #764ba2;
-            text-align: right;
-        }
-
-        .ranking-item .pontos small {
-            display: block;
-            font-size: 10px;
-            color: #999;
-            font-weight: 600;
-        }
-
-        .ranking-item.destaque {
-            background: linear-gradient(135deg, #FFF9E6, #FFEBB3);
-            border-left-color: #FF6B6B;
-            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
-        }
-
-        .ranking-item.destaque .nome {
-            color: #764ba2;
-        }
-
-        /* ===== ADMIN ===== */
-        .admin-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #764ba2, #667eea);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #4CAF50, #8BC34A);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        .btn-success:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, #f44336, #e91e63);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-danger:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #764ba2;
-            border: 2px solid #764ba2;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline:hover {
-            background: #764ba2;
-            color: white;
-        }
-
-        .action-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 6px 8px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .action-btn:hover {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
-        /* ===== MODAL ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal.show {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: modalIn 0.3s ease;
-        }
-
-        @keyframes modalIn {
-            from { transform: scale(0.9) translateY(-20px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #764ba2, #667eea);
-            color: white;
-            padding: 20px 24px;
-            border-radius: 20px 20px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            font-size: 18px;
-            color: white;
-            margin: 0;
-        }
-
-        .modal-header .close {
-            font-size: 28px;
-            cursor: pointer;
-            color: white;
-            line-height: 1;
-        }
-
-        .modal-header .close:hover {
-            transform: rotate(90deg);
-            transition: all 0.3s ease;
-        }
-
-        .modal-body {
-            padding: 24px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 700;
-            color: #555;
-            margin-bottom: 6px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #764ba2;
-            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        @media (max-width: 500px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-        .form-actions button {
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-cancel {
-            background: #f0f0f0;
-            color: #666;
-            border: none;
-        }
-
-        .btn-cancel:hover {
-            background: #e0e0e0;
-        }
-
-        /* ===== LOGIN ADMIN ===== */
-        .login-modal .modal-content {
-            max-width: 380px;
-        }
-
-        .login-body {
-            text-align: center;
-            padding: 30px 24px;
-        }
-
-        .login-body .emoji {
-            font-size: 60px;
-            margin-bottom: 12px;
-        }
-
-        .login-body h3 {
-            color: #764ba2;
-            margin-bottom: 8px;
-        }
-
-        .login-body p {
-            color: #888;
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-
-        /* ===== AVISO ADMIN ===== */
-        .admin-banner {
-            background: linear-gradient(135deg, #4CAF50, #8BC34A);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        .admin-banner .text {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* ===== MODO VISITANTE ===== */
-        .visitor-banner {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: white;
-            font-size: 13px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        footer .heart {
-            color: #FF6B6B;
-            animation: pulse 1.2s infinite;
+        .ranking-item .info { flex: 1; min-width: 0; }
+        .ranking-item .nome { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ranking-item .turma-tag {
             display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; font-size: 10px; font-weight: 700;
+            padding: 2px 8px; border-radius: 10px;
+            margin-left: 6px; vertical-align: middle;
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        .ranking-item .brinquedos { font-size: 12px; color: #888; }
+        .ranking-item .pontos { font-size: 20px; font-weight: 800; color: #764ba2; text-align: right; }
+        .ranking-item .pontos small { display: block; font-size: 10px; color: #999; font-weight: 600; }
+        .ranking-item.destaque { background: linear-gradient(135deg, #FFF9E6, #FFEBB3); border-left-color: #FF6B6B; box-shadow: 0 4px 20px rgba(255,107,107,0.3); }
+        .ranking-item.destaque .nome { color: #764ba2; }
+        .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+        .btn-primary {
+            background: linear-gradient(135deg, #764ba2, #667eea); color: white;
+            border: none; padding: 12px 24px; border-radius: 50px;
+            font-size: 14px; font-weight: 700; cursor: pointer;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(118,75,162,0.3);
         }
-
-        /* ===== ADMIN FLOATING BUTTON ===== */
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(118,75,162,0.4); }
+        .btn-success {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white;
+            border: none; padding: 12px 24px; border-radius: 50px;
+            font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+        }
+        .btn-success:hover { transform: translateY(-2px); }
+        .btn-danger {
+            background: linear-gradient(135deg, #f44336, #e91e63); color: white;
+            border: none; padding: 8px 16px; border-radius: 50px;
+            font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+        }
+        .btn-danger:hover { transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent; color: #764ba2;
+            border: 2px solid #764ba2; padding: 10px 20px;
+            border-radius: 50px; font-size: 13px; font-weight: 700;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .btn-outline:hover { background: #764ba2; color: white; }
+        .action-btn { background: transparent; border: none; cursor: pointer; font-size: 18px; padding: 6px 8px; border-radius: 8px; transition: all 0.2s ease; }
+        .action-btn:hover { background: rgba(0,0,0,0.08); }
+        .modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+            z-index: 1000; justify-content: center; align-items: center;
+            padding: 20px; backdrop-filter: blur(4px);
+        }
+        .modal.show { display: flex; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content {
+            background: white; border-radius: 20px;
+            max-width: 500px; width: 100%; max-height: 90vh;
+            overflow-y: auto; animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn { from { transform: scale(0.9) translateY(-20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+        .modal-header {
+            background: linear-gradient(135deg, #764ba2, #667eea); color: white;
+            padding: 20px 24px; border-radius: 20px 20px 0 0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .modal-header h2 { font-size: 18px; color: white; margin: 0; }
+        .modal-header .close { font-size: 28px; cursor: pointer; color: white; line-height: 1; }
+        .modal-header .close:hover { transform: rotate(90deg); transition: all 0.3s ease; }
+        .modal-body { padding: 24px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 700; color: #555; margin-bottom: 6px; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 14px 18px;
+            border: 2px solid #e0e0e0; border-radius: 12px;
+            font-size: 15px; transition: all 0.3s ease;
+            background: white; font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #764ba2; box-shadow: 0 0 0 4px rgba(118,75,162,0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+        .form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+        .form-actions button { padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+        .btn-cancel { background: #f0f0f0; color: #666; border: none; }
+        .btn-cancel:hover { background: #e0e0e0; }
+        .login-modal .modal-content { max-width: 380px; }
+        .login-body { text-align: center; padding: 30px 24px; }
+        .login-body .emoji { font-size: 60px; margin-bottom: 12px; }
+        .login-body h3 { color: #764ba2; margin-bottom: 8px; }
+        .login-body p { color: #888; font-size: 13px; margin-bottom: 20px; }
+        .admin-banner {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white;
+            padding: 12px 20px; border-radius: 12px; margin-bottom: 16px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 10px; box-shadow: 0 4px 15px rgba(76,175,80,0.3);
+        }
+        .admin-banner .text { font-size: 14px; font-weight: 600; }
+        .visitor-banner {
+            background: linear-gradient(135deg, #667eea, #764ba2); color: white;
+            padding: 12px 20px; border-radius: 12px; margin-bottom: 16px;
+            text-align: center; font-size: 14px; font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        }
+        footer { text-align: center; padding: 30px 20px; color: white; font-size: 13px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+        footer .heart { color: #FF6B6B; animation: pulse 1.2s infinite; display: inline-block; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
         .admin-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
+            position: fixed; bottom: 20px; right: 20px;
+            width: 56px; height: 56px; border-radius: 50%;
             background: linear-gradient(135deg, #764ba2, #667eea);
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
-            transition: all 0.3s ease;
-            z-index: 100;
+            color: white; border: none; font-size: 24px; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(118,75,162,0.4);
+            transition: all 0.3s ease; z-index: 100;
         }
-
-        .admin-float:hover {
-            transform: scale(1.1) rotate(15deg);
-        }
-
-        /* ===== RESPONSIVO ===== */
+        .admin-float:hover { transform: scale(1.1) rotate(15deg); }
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 24px;
-            }
-            header p {
-                font-size: 14px;
-            }
-            .header-emoji {
-                font-size: 32px;
-            }
-            .card {
-                padding: 18px;
-            }
-            .ranking-item {
-                padding: 12px 14px;
-                gap: 10px;
-            }
-            .ranking-item .avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-            .ranking-item .nome {
-                font-size: 14px;
-            }
-            .ranking-item .pontos {
-                font-size: 17px;
-            }
-            .admin-actions button {
-                flex: 1;
-                min-width: 140px;
-            }
+            header h1 { font-size: 24px; }
+            header p { font-size: 14px; }
+            .header-emoji { font-size: 32px; }
+            .card { padding: 18px; }
+            .ranking-item { padding: 12px 14px; gap: 10px; flex-wrap: wrap; }
+            .ranking-item .avatar { width: 40px; height: 40px; font-size: 18px; }
+            .ranking-item .nome { font-size: 14px; }
+            .ranking-item .pontos { font-size: 17px; }
+            .admin-actions button { flex: 1; min-width: 140px; }
         }
-
-        /* ===== SEM RESULTADOS ===== */
-        .empty-msg {
-            text-align: center;
-            padding: 40px 20px;
-            color: #999;
-            font-style: italic;
-            font-size: 15px;
-        }
-
-        /* ===== NOTIFICAÇÃO ===== */
+        .empty-msg { text-align: center; padding: 40px 20px; color: #999; font-style: italic; font-size: 15px; }
         .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
+            position: fixed; bottom: 30px; left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: #333;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 2000;
-            opacity: 0;
-            transition: all 0.4s ease;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #333; color: white;
+            padding: 14px 28px; border-radius: 50px;
+            font-size: 14px; font-weight: 600; z-index: 2000;
+            opacity: 0; transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .toast.success {
-            background: linear-gradient(135deg, #4CAF50, #8BC34A);
-        }
-
-        .toast.error {
-            background: linear-gradient(135deg, #f44336, #e91e63);
-        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast.success { background: linear-gradient(135deg, #4CAF50, #8BC34A); }
+        .toast.error { background: linear-gradient(135deg, #f44336, #e91e63); }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
     <header>
         <span class="header-emoji">🎈🎁🧸🎨</span>
         <h1>Dia das Crianças Solidário</h1>
@@ -677,18 +228,15 @@
 
     <div class="container">
 
-        <!-- Banner Visitante -->
         <div id="visitorBanner" class="visitor-banner">
             👋 Bem-vindo(a)! Você está no modo <strong>Visitante</strong>. Pesquise seu nome para ver seus pontos!
         </div>
 
-        <!-- Banner Admin -->
         <div id="adminBanner" class="admin-banner" style="display:none;">
             <span class="text">🔓 Modo Administrador Ativo</span>
             <button onclick="sairAdmin()" class="btn-outline" style="color:white;border-color:white;padding:6px 14px;font-size:12px;">🔒 Sair do Admin</button>
         </div>
 
-        <!-- ===== STATS ===== -->
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="emoji">👥</span>
@@ -707,16 +255,21 @@
             </div>
         </div>
 
-        <!-- ===== PESQUISA ===== -->
         <div class="card">
             <h2>🔍 Pesquisar Doador</h2>
             <div class="search-box">
                 <input type="text" id="buscaInput" placeholder="Digite seu nome para ver seus pontos..." oninput="pesquisar()">
                 <span class="icon">🔍</span>
             </div>
+            <div class="filtros">
+                <label>📚 Filtrar por turma:</label>
+                <select id="filtroTurma" onchange="pesquisar()">
+                    <option value="">Todas as turmas</option>
+                </select>
+                <button class="btn-limpar" onclick="limparFiltros()">🗑️ Limpar</button>
+            </div>
         </div>
 
-        <!-- ===== ADMIN AÇÕES ===== -->
         <div class="card" id="adminCard" style="display:none;">
             <h2>⚙️ Gerenciar Doadores</h2>
             <div class="admin-actions">
@@ -727,7 +280,6 @@
             </div>
         </div>
 
-        <!-- ===== RANKING ===== -->
         <div class="card">
             <h2>🏆 Ranking de Doadores</h2>
             <div class="ranking-list" id="rankingList">
@@ -737,7 +289,6 @@
 
     </div>
 
-    <!-- ===== BOTÃO ADMIN FLUTUANTE ===== -->
     <button id="adminFloat" class="admin-float" onclick="abrirLoginAdmin()" title="Acesso Administrador">🔐</button>
 
     <!-- ===== MODAL DOADOR ===== -->
@@ -754,9 +305,47 @@
                         <label>Nome do Doador *</label>
                         <input type="text" id="doadorNome" placeholder="Ex: Maria Silva" required>
                     </div>
+                    <div class="form-group">
+                        <label>Turma *</label>
+                        <select id="doadorTurma" required>
+                            <option value="">Selecione a turma...</option>
+                            <optgroup label="📗 Ensino Fundamental">
+                                <option value="6A">6º Ano A</option>
+                                <option value="6B">6º Ano B</option>
+                                <option value="6C">6º Ano C</option>
+                                <option value="6D">6º Ano D</option>
+                                <option value="7A">7º Ano A</option>
+                                <option value="7B">7º Ano B</option>
+                                <option value="7C">7º Ano C</option>
+                                <option value="7D">7º Ano D</option>
+                                <option value="8A">8º Ano A</option>
+                                <option value="8B">8º Ano B</option>
+                                <option value="8C">8º Ano C</option>
+                                <option value="8D">8º Ano D</option>
+                                <option value="9A">9º Ano A</option>
+                                <option value="9B">9º Ano B</option>
+                                <option value="9C">9º Ano C</option>
+                                <option value="9D">9º Ano D</option>
+                            </optgroup>
+                            <optgroup label="📘 Ensino Médio">
+                                <option value="1A">1º Ano EM A</option>
+                                <option value="1B">1º Ano EM B</option>
+                                <option value="1C">1º Ano EM C</option>
+                                <option value="1D">1º Ano EM D</option>
+                                <option value="2A">2º Ano EM A</option>
+                                <option value="2B">2º Ano EM B</option>
+                                <option value="2C">2º Ano EM C</option>
+                                <option value="2D">2º Ano EM D</option>
+                                <option value="3A">3º Ano EM A</option>
+                                <option value="3B">3º Ano EM B</option>
+                                <option value="3C">3º Ano EM C</option>
+                                <option value="3D">3º Ano EM D</option>
+                            </optgroup>
+                        </select>
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Quantidade de Brinquedos *</label>
+                            <label>Qtd. de Brinquedos *</label>
                             <input type="number" id="doadorBrinquedos" placeholder="0" min="0" value="1" required>
                         </div>
                         <div class="form-group">
@@ -777,7 +366,7 @@
         </div>
     </div>
 
-    <!-- ===== MODAL LOGIN ADMIN ===== -->
+    <!-- ===== MODAL LOGIN ===== -->
     <div id="modalLogin" class="modal login-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -797,10 +386,8 @@
         </div>
     </div>
 
-    <!-- ===== TOAST ===== -->
     <div id="toast" class="toast"></div>
 
-    <!-- ===== FOOTER ===== -->
     <footer>
         Feito com <span class="heart">❤️</span> para o Dia das Crianças<br>
         <span style="font-size:11px;opacity:0.8;">Campanha de Arrecadação de Brinquedos</span>
@@ -811,111 +398,99 @@
         // CAMPANHA DIA DAS CRIANÇAS
         // =============================================
 
-        // ===== CONFIGURAÇÕES =====
-        // 🔐 Hash SHA-256 da senha (NÃO é a senha em texto puro!)
-        // A senha atual é: admin123
-        // Para trocar, veja as instruções abaixo do código
         const SENHA_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
         const STORAGE_KEY = 'campanhaBrinquedos';
 
-        // ===== ESTADO =====
         let doadores = [];
         let modoAdmin = false;
 
-        // ===== INICIALIZAÇÃO =====
         document.addEventListener('DOMContentLoaded', function() {
             carregarDados();
+            carregarFiltros();
             renderizarRanking();
             atualizarStats();
 
-            // Verifica se está no modo admin via URL (?admin=1)
             const params = new URLSearchParams(window.location.search);
-            if (params.get('admin') === '1') {
-                abrirLoginAdmin();
-            }
+            if (params.get('admin') === '1') abrirLoginAdmin();
 
-            // Enter no campo de senha
             document.getElementById('senhaAdmin').addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') verificarSenha();
             });
 
-            // Calcula pontos automaticamente
             document.getElementById('doadorBrinquedos').addEventListener('input', calcularPontos);
             document.getElementById('doadorPontosPorItem').addEventListener('input', calcularPontos);
         });
 
-        // ===== FUNÇÃO HASH SHA-256 =====
         async function gerarHash(texto) {
             const encoder = new TextEncoder();
             const data = encoder.encode(texto);
             const hashBuffer = await crypto.subtle.digest('SHA-256', data);
             const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            return hashHex;
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // ===== CARREGAR DADOS =====
         function carregarDados() {
             try {
                 const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    doadores = JSON.parse(saved);
-                } else {
-                    doadores = [];
-                }
-            } catch (e) {
-                doadores = [];
-            }
+                doadores = saved ? JSON.parse(saved) : [];
+            } catch (e) { doadores = []; }
         }
 
-        // ===== SALVAR DADOS =====
         function salvarDados() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(doadores));
-            } catch (e) {
-                console.error('Erro ao salvar:', e);
-            }
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(doadores)); } catch (e) {}
         }
 
-        // ===== CALCULAR PONTOS =====
+        function carregarFiltros() {
+            const select = document.getElementById('filtroTurma');
+            const turmas = ['6A','6B','6C','6D','7A','7B','7C','7D','8A','8B','8C','8D','9A','9B','9C','9D',
+                            '1A','1B','1C','1D','2A','2B','2C','2D','3A','3B','3C','3D'];
+            turmas.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t;
+                opt.textContent = t;
+                select.appendChild(opt);
+            });
+        }
+
         function calcularPontos() {
             const brinquedos = parseInt(document.getElementById('doadorBrinquedos').value) || 0;
             const pontosPorItem = parseInt(document.getElementById('doadorPontosPorItem').value) || 0;
-            const total = brinquedos * pontosPorItem;
-            document.getElementById('doadorPontosTotal').value = total;
+            document.getElementById('doadorPontosTotal').value = brinquedos * pontosPorItem;
         }
 
-        // ===== ATUALIZAR STATS =====
         function atualizarStats() {
             const totalDoadores = doadores.length;
             const totalBrinquedos = doadores.reduce((acc, d) => acc + (d.brinquedos || 0), 0);
             const totalPontos = doadores.reduce((acc, d) => acc + (d.pontos || 0), 0);
-
             document.getElementById('totalDoadores').textContent = totalDoadores;
             document.getElementById('totalBrinquedos').textContent = totalBrinquedos;
             document.getElementById('totalPontos').textContent = totalPontos;
         }
 
-        // ===== RENDERIZAR RANKING =====
-        function renderizarRanking(filtro = '') {
+        function renderizarRanking() {
             const container = document.getElementById('rankingList');
+            const filtroNome = document.getElementById('buscaInput').value.trim();
+            const filtroTurma = document.getElementById('filtroTurma').value;
+
             let lista = [...doadores];
 
-            // Filtra se tiver busca
-            if (filtro) {
-                const f = filtro.toLowerCase();
+            if (filtroNome) {
+                const f = filtroNome.toLowerCase();
                 lista = lista.filter(d => d.nome.toLowerCase().includes(f));
             }
 
-            // Ordena por pontos (maior primeiro)
+            if (filtroTurma) {
+                lista = lista.filter(d => d.turma === filtroTurma);
+            }
+
             lista.sort((a, b) => (b.pontos || 0) - (a.pontos || 0));
 
             if (lista.length === 0) {
-                if (filtro) {
-                    container.innerHTML = `<p class="empty-msg">😕 Nenhum doador encontrado com "<strong>${filtro}</strong>"</p>`;
-                } else {
-                    container.innerHTML = `<p class="empty-msg">Nenhum doador cadastrado ainda. Seja o primeiro! 🎁</p>`;
-                }
+                let msg = 'Nenhum doador cadastrado ainda. Seja o primeiro! 🎁';
+                if (filtroNome && filtroTurma) msg = `😕 Nenhum resultado para "<strong>${filtroNome}</strong>" na turma <strong>${filtroTurma}</strong>`;
+                else if (filtroNome) msg = `😕 Nenhum doador encontrado com "<strong>${filtroNome}</strong>"`;
+                else if (filtroTurma) msg = `😕 Nenhum doador cadastrado na turma <strong>${filtroTurma}</strong>`;
+                container.innerHTML = `<p class="empty-msg">${msg}</p>`;
                 return;
             }
 
@@ -924,30 +499,24 @@
                 let posicaoClass = '';
                 let medalha = `${posicao}º`;
 
-                if (!filtro) {
-                    if (posicao === 1) {
-                        posicaoClass = 'ouro';
-                        medalha = '🥇';
-                    } else if (posicao === 2) {
-                        posicaoClass = 'prata';
-                        medalha = '🥈';
-                    } else if (posicao === 3) {
-                        posicaoClass = 'bronze';
-                        medalha = '🥉';
-                    }
+                if (!filtroNome && !filtroTurma) {
+                    if (posicao === 1) { posicaoClass = 'ouro'; medalha = '🥇'; }
+                    else if (posicao === 2) { posicaoClass = 'prata'; medalha = '🥈'; }
+                    else if (posicao === 3) { posicaoClass = 'bronze'; medalha = '🥉'; }
                 }
 
                 const inicial = d.nome.charAt(0).toUpperCase();
-                const destaque = filtro && d.nome.toLowerCase().includes(filtro.toLowerCase()) ? 'destaque' : '';
-                const emojiAleatorio = ['🧸', '🎁', '🎨', '🎪', '🎠', '🎯', '🪀', '🧩'][d.nome.length % 8];
+                const destaque = filtroNome && d.nome.toLowerCase().includes(filtroNome.toLowerCase()) ? 'destaque' : '';
+                const emoji = ['🧸','🎁','🎨','🎪','🎠','🎯','🪀','🧩'][d.nome.length % 8];
+                const turmaTag = d.turma ? `<span class="turma-tag">${d.turma}</span>` : '';
 
                 return `
                     <div class="ranking-item ${destaque}">
                         <span class="posicao ${posicaoClass}">${medalha}</span>
                         <div class="avatar">${inicial}</div>
                         <div class="info">
-                            <div class="nome">${d.nome}</div>
-                            <div class="brinquedos">${emojiAleatorio} ${d.brinquedos} brinquedo(s) doado(s)</div>
+                            <div class="nome">${d.nome}${turmaTag}</div>
+                            <div class="brinquedos">${emoji} ${d.brinquedos} brinquedo(s)</div>
                         </div>
                         <div class="pontos">
                             ${d.pontos}
@@ -964,34 +533,27 @@
             }).join('');
         }
 
-        // ===== PESQUISAR =====
-        function pesquisar() {
-            const filtro = document.getElementById('buscaInput').value.trim();
-            renderizarRanking(filtro);
+        function pesquisar() { renderizarRanking(); }
+
+        function limparFiltros() {
+            document.getElementById('buscaInput').value = '';
+            document.getElementById('filtroTurma').value = '';
+            renderizarRanking();
         }
 
-        // ===== MODAIS =====
-        function abrirModal(id) {
-            document.getElementById(id).classList.add('show');
-        }
+        function abrirModal(id) { document.getElementById(id).classList.add('show'); }
+        function fecharModal(id) { document.getElementById(id).classList.remove('show'); }
 
-        function fecharModal(id) {
-            document.getElementById(id).classList.remove('show');
-        }
-
-        // Fecha modal clicando fora
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('show');
-                }
+                if (e.target === this) this.classList.remove('show');
             });
         });
 
-        // ===== ABRIR MODAL DOADOR =====
         function abrirModalDoador() {
             document.getElementById('doadorId').value = '';
             document.getElementById('doadorNome').value = '';
+            document.getElementById('doadorTurma').value = '';
             document.getElementById('doadorBrinquedos').value = 1;
             document.getElementById('doadorPontosPorItem').value = 10;
             document.getElementById('doadorPontosTotal').value = 10;
@@ -999,13 +561,12 @@
             abrirModal('modalDoador');
         }
 
-        // ===== EDITAR DOADOR =====
         function editarDoador(id) {
             const d = doadores.find(x => x.id === id);
             if (!d) return;
-
             document.getElementById('doadorId').value = d.id;
             document.getElementById('doadorNome').value = d.nome;
+            document.getElementById('doadorTurma').value = d.turma || '';
             document.getElementById('doadorBrinquedos').value = d.brinquedos || 0;
             document.getElementById('doadorPontosPorItem').value = d.pontosPorItem || 10;
             document.getElementById('doadorPontosTotal').value = d.pontos || 0;
@@ -1013,68 +574,48 @@
             abrirModal('modalDoador');
         }
 
-        // ===== EXCLUIR DOADOR =====
         function excluirDoador(id) {
             if (!confirm('Tem certeza que deseja excluir este doador?')) return;
-
             doadores = doadores.filter(d => d.id !== id);
             salvarDados();
-            renderizarRanking(document.getElementById('buscaInput').value.trim());
+            renderizarRanking();
             atualizarStats();
-            mostrarToast('✅ Doador excluído com sucesso!', 'success');
+            mostrarToast('✅ Doador excluído!', 'success');
         }
 
-        // ===== SALVAR FORMULÁRIO =====
         document.getElementById('formDoador').addEventListener('submit', function(e) {
             e.preventDefault();
-
             const id = document.getElementById('doadorId').value;
             const nome = document.getElementById('doadorNome').value.trim();
+            const turma = document.getElementById('doadorTurma').value;
             const brinquedos = parseInt(document.getElementById('doadorBrinquedos').value) || 0;
             const pontosPorItem = parseInt(document.getElementById('doadorPontosPorItem').value) || 0;
             const pontos = brinquedos * pontosPorItem;
 
-            if (!nome) {
-                mostrarToast('❌ Digite o nome do doador', 'error');
-                return;
-            }
-
-            if (brinquedos <= 0) {
-                mostrarToast('❌ A quantidade de brinquedos deve ser maior que 0', 'error');
-                return;
-            }
+            if (!nome) { mostrarToast('❌ Digite o nome do doador', 'error'); return; }
+            if (!turma) { mostrarToast('❌ Selecione a turma', 'error'); return; }
+            if (brinquedos <= 0) { mostrarToast('❌ Quantidade deve ser maior que 0', 'error'); return; }
 
             if (id) {
-                // Editar
                 const idx = doadores.findIndex(d => d.id === id);
-                if (idx !== -1) {
-                    doadores[idx] = { ...doadores[idx], nome, brinquedos, pontosPorItem, pontos };
-                }
+                if (idx !== -1) doadores[idx] = { ...doadores[idx], nome, turma, brinquedos, pontosPorItem, pontos };
                 mostrarToast('✅ Doador atualizado!', 'success');
             } else {
-                // Adicionar
                 doadores.push({
                     id: 'doador_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
-                    nome,
-                    brinquedos,
-                    pontosPorItem,
-                    pontos
+                    nome, turma, brinquedos, pontosPorItem, pontos
                 });
                 mostrarToast('✅ Doador adicionado!', 'success');
             }
 
             salvarDados();
             fecharModal('modalDoador');
-            renderizarRanking(document.getElementById('buscaInput').value.trim());
+            renderizarRanking();
             atualizarStats();
         });
 
-        // ===== LOGIN ADMIN =====
         function abrirLoginAdmin() {
-            if (modoAdmin) {
-                mostrarToast('🔓 Você já está no modo Admin', 'success');
-                return;
-            }
+            if (modoAdmin) { mostrarToast('🔓 Você já está no modo Admin', 'success'); return; }
             document.getElementById('senhaAdmin').value = '';
             document.getElementById('erroSenha').textContent = '';
             abrirModal('modalLogin');
@@ -1084,22 +625,16 @@
         async function verificarSenha() {
             const senha = document.getElementById('senhaAdmin').value;
             const erro = document.getElementById('erroSenha');
+            if (!senha) { erro.textContent = '❌ Digite a senha.'; return; }
 
-            if (!senha) {
-                erro.textContent = '❌ Digite a senha.';
-                return;
-            }
-
-            // Gera o hash da senha digitada e compara com o hash armazenado
             const hashDigitado = await gerarHash(senha);
-
             if (hashDigitado === SENHA_HASH) {
                 modoAdmin = true;
                 fecharModal('modalLogin');
                 atualizarModoAdmin();
-                mostrarToast('🔓 Modo Administrador ativado!', 'success');
+                mostrarToast('🔓 Modo Admin ativado!', 'success');
             } else {
-                erro.textContent = '❌ Senha incorreta. Tente novamente.';
+                erro.textContent = '❌ Senha incorreta.';
                 document.getElementById('senhaAdmin').value = '';
                 document.getElementById('senhaAdmin').focus();
             }
@@ -1129,10 +664,9 @@
                 adminFloat.style.display = 'block';
             }
 
-            renderizarRanking(document.getElementById('buscaInput').value.trim());
+            renderizarRanking();
         }
 
-        // ===== EXPORTAR / IMPORTAR =====
         function exportarDados() {
             const dataStr = JSON.stringify(doadores, null, 2);
             const blob = new Blob([dataStr], { type: 'application/json' });
@@ -1170,7 +704,7 @@
                             mostrarToast('❌ Arquivo inválido', 'error');
                         }
                     } catch (err) {
-                        mostrarToast('❌ Erro ao importar: ' + err.message, 'error');
+                        mostrarToast('❌ Erro: ' + err.message, 'error');
                     }
                 };
                 reader.readAsText(file);
@@ -1179,32 +713,27 @@
         }
 
         function limparTudo() {
-            if (!confirm('⚠️ Tem certeza que deseja apagar TODOS os doadores? Essa ação não pode ser desfeita!')) return;
-            if (!confirm('⚠️ Confirme mais uma vez: apagar TUDO?')) return;
-
+            if (!confirm('⚠️ Apagar TODOS os doadores?')) return;
+            if (!confirm('⚠️ Confirme: apagar TUDO?')) return;
             doadores = [];
             salvarDados();
             renderizarRanking();
             atualizarStats();
             document.getElementById('buscaInput').value = '';
-            mostrarToast('🗑️ Todos os dados foram apagados', 'success');
+            document.getElementById('filtroTurma').value = '';
+            mostrarToast('🗑️ Tudo apagado', 'success');
         }
 
-        // ===== TOAST =====
         function mostrarToast(msg, tipo = 'success') {
             const toast = document.getElementById('toast');
             toast.textContent = msg;
             toast.className = 'toast ' + tipo;
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // ===== CONSOLE =====
         console.log('🎈 Campanha Dia das Crianças carregada!');
         console.log(`👥 ${doadores.length} doadores cadastrados`);
-        console.log('💡 Acesse ?admin=1 na URL para abrir o login automaticamente');
     </script>
 
 </body>
