@@ -40,11 +40,46 @@
         .stat-card .label { font-size: 12px; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .card h2 { font-size: 20px; color: #764ba2; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+
+        /* ===== ABAS ===== */
+        .tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            background: #f0f0f0;
+            padding: 6px;
+            border-radius: 50px;
+            overflow-x: auto;
+        }
+        .tabs button {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+        .tabs button:hover { background: rgba(118,75,162,0.1); }
+        .tabs button.active {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: white;
+            box-shadow: 0 4px 15px rgba(118,75,162,0.3);
+        }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+
         .search-box { position: relative; margin-bottom: 12px; }
         .search-box input {
             width: 100%; padding: 16px 50px 16px 20px;
             border: 3px solid #e0e0e0; border-radius: 50px;
             font-size: 16px; transition: all 0.3s ease; background: #f9f9f9;
+            font-family: inherit;
         }
         .search-box input:focus { outline: none; border-color: #764ba2; background: white; box-shadow: 0 0 0 4px rgba(118,75,162,0.1); }
         .search-box .icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; pointer-events: none; }
@@ -53,6 +88,7 @@
         .filtros select {
             padding: 10px 16px; border: 2px solid #e0e0e0; border-radius: 50px;
             font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: white;
+            font-family: inherit;
         }
         .filtros select:focus { outline: none; border-color: #764ba2; }
         .filtros .btn-limpar {
@@ -60,6 +96,7 @@
             background: white; color: #f44336; font-size: 13px; font-weight: 700; cursor: pointer;
         }
         .filtros .btn-limpar:hover { background: #f44336; color: white; }
+
         .ranking-list { display: flex; flex-direction: column; gap: 10px; }
         .ranking-item {
             display: flex; align-items: center; gap: 14px;
@@ -91,28 +128,186 @@
             text-transform: uppercase; letter-spacing: 0.5px;
         }
         .ranking-item .brinquedos { font-size: 12px; color: #888; }
+        .ranking-item .brinquedos .data { color: #aaa; }
         .ranking-item .pontos { font-size: 20px; font-weight: 800; color: #764ba2; text-align: right; }
         .ranking-item .pontos small { display: block; font-size: 10px; color: #999; font-weight: 600; }
         .ranking-item.destaque { background: linear-gradient(135deg, #FFF9E6, #FFEBB3); border-left-color: #FF6B6B; box-shadow: 0 4px 20px rgba(255,107,107,0.3); }
         .ranking-item.destaque .nome { color: #764ba2; }
+
+        /* ===== RANKING POR TURMA ===== */
+        .turma-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+            border-radius: 12px;
+            border-left: 5px solid #FFD93D;
+            transition: all 0.3s ease;
+            animation: slideIn 0.4s ease;
+        }
+        .turma-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .turma-item .posicao {
+            font-size: 22px;
+            font-weight: 800;
+            min-width: 40px;
+            text-align: center;
+        }
+        .turma-item .posicao.ouro { color: #FFD700; }
+        .turma-item .posicao.prata { color: #C0C0C0; }
+        .turma-item .posicao.bronze { color: #CD7F32; }
+        .turma-item .turma-badge {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(118,75,162,0.3);
+        }
+        .turma-item .info { flex: 1; min-width: 0; }
+        .turma-item .info .nome-turma {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .turma-item .info .detalhes {
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .turma-item .info .detalhes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .turma-item .progresso {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .turma-item .progresso .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD93D, #FF6B6B);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+        .turma-item .pontos-turma {
+            font-size: 22px;
+            font-weight: 800;
+            color: #764ba2;
+            text-align: right;
+            min-width: 70px;
+        }
+        .turma-item .pontos-turma small {
+            display: block;
+            font-size: 10px;
+            color: #999;
+            font-weight: 600;
+        }
+        .turma-item.primeiro {
+            background: linear-gradient(135deg, #FFF9E6, #FFEBB3);
+            border-left-color: #FF6B6B;
+            box-shadow: 0 4px 20px rgba(255,107,107,0.3);
+        }
+
+        /* ===== HISTÓRICO ===== */
+        .historico-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: white;
+            border-radius: 12px;
+            border-left: 4px solid #764ba2;
+            transition: all 0.3s ease;
+            animation: slideIn 0.4s ease;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .historico-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .historico-item .data-bloco {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 65px;
+            flex-shrink: 0;
+        }
+        .historico-item .data-bloco .dia {
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .historico-item .data-bloco .mes {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .historico-item .info { flex: 1; min-width: 0; }
+        .historico-item .info .nome {
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        .historico-item .info .detalhes {
+            font-size: 12px;
+            color: #888;
+        }
+        .historico-item .pontos-hist {
+            font-size: 18px;
+            font-weight: 800;
+            color: #4CAF50;
+            text-align: right;
+        }
+        .historico-item .pontos-hist small {
+            display: block;
+            font-size: 10px;
+            color: #999;
+            font-weight: 600;
+        }
+
         .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
         .btn-primary {
             background: linear-gradient(135deg, #764ba2, #667eea); color: white;
             border: none; padding: 12px 24px; border-radius: 50px;
             font-size: 14px; font-weight: 700; cursor: pointer;
             transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(118,75,162,0.3);
+            font-family: inherit;
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(118,75,162,0.4); }
         .btn-success {
             background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white;
             border: none; padding: 12px 24px; border-radius: 50px;
             font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+            font-family: inherit;
         }
         .btn-success:hover { transform: translateY(-2px); }
         .btn-danger {
             background: linear-gradient(135deg, #f44336, #e91e63); color: white;
             border: none; padding: 8px 16px; border-radius: 50px;
             font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+            font-family: inherit;
         }
         .btn-danger:hover { transform: translateY(-2px); }
         .btn-outline {
@@ -120,6 +315,7 @@
             border: 2px solid #764ba2; padding: 10px 20px;
             border-radius: 50px; font-size: 13px; font-weight: 700;
             cursor: pointer; transition: all 0.3s ease;
+            font-family: inherit;
         }
         .btn-outline:hover { background: #764ba2; color: white; }
         .action-btn { background: transparent; border: none; cursor: pointer; font-size: 18px; padding: 6px 8px; border-radius: 8px; transition: all 0.2s ease; }
@@ -159,7 +355,7 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
         .form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
-        .form-actions button { padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+        .form-actions button { padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
         .btn-cancel { background: #f0f0f0; color: #666; border: none; }
         .btn-cancel:hover { background: #e0e0e0; }
         .login-modal .modal-content { max-width: 380px; }
@@ -197,11 +393,14 @@
             header p { font-size: 14px; }
             .header-emoji { font-size: 32px; }
             .card { padding: 18px; }
-            .ranking-item { padding: 12px 14px; gap: 10px; flex-wrap: wrap; }
+            .ranking-item, .turma-item, .historico-item { padding: 12px 14px; gap: 10px; flex-wrap: wrap; }
             .ranking-item .avatar { width: 40px; height: 40px; font-size: 18px; }
             .ranking-item .nome { font-size: 14px; }
             .ranking-item .pontos { font-size: 17px; }
+            .turma-item .turma-badge { width: 45px; height: 45px; font-size: 15px; }
+            .turma-item .pontos-turma { font-size: 18px; min-width: 60px; }
             .admin-actions button { flex: 1; min-width: 140px; }
+            .tabs button { font-size: 12px; padding: 10px 12px; }
         }
         .empty-msg { text-align: center; padding: 40px 20px; color: #999; font-style: italic; font-size: 15px; }
         .toast {
@@ -253,6 +452,11 @@
                 <span class="number" id="totalPontos">0</span>
                 <span class="label">Pontos Totais</span>
             </div>
+            <div class="stat-card">
+                <span class="emoji">🏫</span>
+                <span class="number" id="totalTurmas">0</span>
+                <span class="label">Turmas</span>
+            </div>
         </div>
 
         <div class="card">
@@ -281,9 +485,32 @@
         </div>
 
         <div class="card">
-            <h2>🏆 Ranking de Doadores</h2>
-            <div class="ranking-list" id="rankingList">
-                <p class="empty-msg">Nenhum doador cadastrado ainda. Seja o primeiro! 🎁</p>
+            <h2>📊 Visualizar</h2>
+            <div class="tabs">
+                <button class="active" onclick="mudarAba('geral', this)">🏆 Ranking Geral</button>
+                <button onclick="mudarAba('turma', this)">🏫 Por Turma</button>
+                <button onclick="mudarAba('historico', this)">📜 Histórico</button>
+            </div>
+
+            <!-- ABA: RANKING GERAL -->
+            <div id="aba-geral" class="tab-panel active">
+                <div class="ranking-list" id="rankingList">
+                    <p class="empty-msg">Nenhum doador cadastrado ainda. Seja o primeiro! 🎁</p>
+                </div>
+            </div>
+
+            <!-- ABA: POR TURMA -->
+            <div id="aba-turma" class="tab-panel">
+                <div class="ranking-list" id="rankingTurmaList">
+                    <p class="empty-msg">Nenhuma turma com doações ainda. 🎁</p>
+                </div>
+            </div>
+
+            <!-- ABA: HISTÓRICO -->
+            <div id="aba-historico" class="tab-panel">
+                <div id="historicoList">
+                    <p class="empty-msg">Nenhuma doação registrada ainda. 🎁</p>
+                </div>
             </div>
         </div>
 
@@ -342,6 +569,10 @@
                                 <option value="3D">3º Ano EM D</option>
                             </optgroup>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>📅 Data da Doação *</label>
+                        <input type="date" id="doadorData" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -403,11 +634,12 @@
 
         let doadores = [];
         let modoAdmin = false;
+        let abaAtual = 'geral';
 
         document.addEventListener('DOMContentLoaded', function() {
             carregarDados();
             carregarFiltros();
-            renderizarRanking();
+            renderizarTudo();
             atualizarStats();
 
             const params = new URLSearchParams(window.location.search);
@@ -462,12 +694,29 @@
             const totalDoadores = doadores.length;
             const totalBrinquedos = doadores.reduce((acc, d) => acc + (d.brinquedos || 0), 0);
             const totalPontos = doadores.reduce((acc, d) => acc + (d.pontos || 0), 0);
+            const turmasUnicas = new Set(doadores.map(d => d.turma).filter(t => t));
             document.getElementById('totalDoadores').textContent = totalDoadores;
             document.getElementById('totalBrinquedos').textContent = totalBrinquedos;
             document.getElementById('totalPontos').textContent = totalPontos;
+            document.getElementById('totalTurmas').textContent = turmasUnicas.size;
         }
 
-        function renderizarRanking() {
+        function renderizarTudo() {
+            renderizarRankingGeral();
+            renderizarRankingTurma();
+            renderizarHistorico();
+        }
+
+        function mudarAba(aba, btn) {
+            abaAtual = aba;
+            document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('aba-' + aba).classList.add('active');
+        }
+
+        // ===== RANKING GERAL =====
+        function renderizarRankingGeral() {
             const container = document.getElementById('rankingList');
             const filtroNome = document.getElementById('buscaInput').value.trim();
             const filtroTurma = document.getElementById('filtroTurma').value;
@@ -478,7 +727,6 @@
                 const f = filtroNome.toLowerCase();
                 lista = lista.filter(d => d.nome.toLowerCase().includes(f));
             }
-
             if (filtroTurma) {
                 lista = lista.filter(d => d.turma === filtroTurma);
             }
@@ -509,6 +757,7 @@
                 const destaque = filtroNome && d.nome.toLowerCase().includes(filtroNome.toLowerCase()) ? 'destaque' : '';
                 const emoji = ['🧸','🎁','🎨','🎪','🎠','🎯','🪀','🧩'][d.nome.length % 8];
                 const turmaTag = d.turma ? `<span class="turma-tag">${d.turma}</span>` : '';
+                const dataFormatada = d.data ? formatarData(d.data) : '';
 
                 return `
                     <div class="ranking-item ${destaque}">
@@ -516,7 +765,7 @@
                         <div class="avatar">${inicial}</div>
                         <div class="info">
                             <div class="nome">${d.nome}${turmaTag}</div>
-                            <div class="brinquedos">${emoji} ${d.brinquedos} brinquedo(s)</div>
+                            <div class="brinquedos">${emoji} ${d.brinquedos} brinquedo(s)${dataFormatada ? ' <span class="data">• 📅 ' + dataFormatada + '</span>' : ''}</div>
                         </div>
                         <div class="pontos">
                             ${d.pontos}
@@ -533,12 +782,154 @@
             }).join('');
         }
 
-        function pesquisar() { renderizarRanking(); }
+        // ===== RANKING POR TURMA =====
+        function renderizarRankingTurma() {
+            const container = document.getElementById('rankingTurmaList');
+            const filtroTurma = document.getElementById('filtroTurma').value;
+
+            // Agrupa por turma
+            const turmas = {};
+            doadores.forEach(d => {
+                if (!d.turma) return;
+                if (!turmas[d.turma]) {
+                    turmas[d.turma] = { turma: d.turma, pontos: 0, brinquedos: 0, doadores: 0 };
+                }
+                turmas[d.turma].pontos += d.pontos || 0;
+                turmas[d.turma].brinquedos += d.brinquedos || 0;
+                turmas[d.turma].doadores += 1;
+            });
+
+            let lista = Object.values(turmas);
+
+            // Filtra por turma se selecionado
+            if (filtroTurma) {
+                lista = lista.filter(t => t.turma === filtroTurma);
+            }
+
+            if (lista.length === 0) {
+                container.innerHTML = `<p class="empty-msg">Nenhuma turma com doações ainda. 🎁</p>`;
+                return;
+            }
+
+            // Ordena por pontos
+            lista.sort((a, b) => b.pontos - a.pontos);
+
+            const maiorPontuacao = lista[0].pontos || 1;
+
+            container.innerHTML = lista.map((t, idx) => {
+                const posicao = idx + 1;
+                let posicaoClass = '';
+                let medalha = `${posicao}º`;
+
+                if (!filtroTurma) {
+                    if (posicao === 1) { posicaoClass = 'ouro'; medalha = '🥇'; }
+                    else if (posicao === 2) { posicaoClass = 'prata'; medalha = '🥈'; }
+                    else if (posicao === 3) { posicaoClass = 'bronze'; medalha = '🥉'; }
+                }
+
+                const percentual = Math.min((t.pontos / maiorPontuacao) * 100, 100);
+                const primeiroClass = posicao === 1 && !filtroTurma ? 'primeiro' : '';
+
+                return `
+                    <div class="turma-item ${primeiroClass}">
+                        <span class="posicao ${posicaoClass}">${medalha}</span>
+                        <div class="turma-badge">${t.turma}</div>
+                        <div class="info">
+                            <div class="nome-turma">Turma ${t.turma}</div>
+                            <div class="detalhes">
+                                <span>👥 ${t.doadores} doador(es)</span>
+                                <span>🧸 ${t.brinquedos} brinquedo(s)</span>
+                            </div>
+                            <div class="progresso"><div class="fill" style="width:${percentual}%"></div></div>
+                        </div>
+                        <div class="pontos-turma">
+                            ${t.pontos}
+                            <small>pontos</small>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ===== HISTÓRICO DE DOAÇÕES =====
+        function renderizarHistorico() {
+            const container = document.getElementById('historicoList');
+            const filtroTurma = document.getElementById('filtroTurma').value;
+
+            let lista = [...doadores];
+
+            if (filtroTurma) {
+                lista = lista.filter(d => d.turma === filtroTurma);
+            }
+
+            // Ordena por data (mais recente primeiro). Doadores sem data vão pro fim.
+            lista.sort((a, b) => {
+                const da = a.data || '0000-00-00';
+                const db = b.data || '0000-00-00';
+                return db.localeCompare(da);
+            });
+
+            if (lista.length === 0) {
+                container.innerHTML = `<p class="empty-msg">Nenhuma doação registrada ainda. 🎁</p>`;
+                return;
+            }
+
+            const nomesMeses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+
+            container.innerHTML = lista.map(d => {
+                let dia = '--', mes = '--';
+                if (d.data) {
+                    const dt = new Date(d.data + 'T00:00:00');
+                    dia = String(dt.getDate()).padStart(2, '0');
+                    mes = nomesMeses[dt.getMonth()];
+                }
+
+                const turmaTag = d.turma ? `<span class="turma-tag">${d.turma}</span>` : '';
+                const emoji = ['🧸','🎁','🎨','🎪','🎠','🎯','🪀','🧩'][d.nome.length % 8];
+
+                return `
+                    <div class="historico-item">
+                        <div class="data-bloco">
+                            <div class="dia">${dia}</div>
+                            <div class="mes">${mes}</div>
+                        </div>
+                        <div class="info">
+                            <div class="nome">${d.nome}${turmaTag}</div>
+                            <div class="detalhes">${emoji} ${d.brinquedos} brinquedo(s) • ${d.pontosPorItem || 10} pts cada</div>
+                        </div>
+                        <div class="pontos-hist">
+                            +${d.pontos}
+                            <small>pontos</small>
+                        </div>
+                        ${modoAdmin ? `
+                            <div style="display:flex;gap:4px;">
+                                <button class="action-btn" onclick="editarDoador('${d.id}')" title="Editar">✏️</button>
+                                <button class="action-btn" onclick="excluirDoador('${d.id}')" title="Excluir">🗑️</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatarData(dataStr) {
+            if (!dataStr) return '';
+            try {
+                const dt = new Date(dataStr + 'T00:00:00');
+                return dt.toLocaleDateString('pt-BR');
+            } catch (e) { return dataStr; }
+        }
+
+        function pesquisar() {
+            renderizarRankingGeral();
+            renderizarRankingTurma();
+            renderizarHistorico();
+        }
 
         function limparFiltros() {
             document.getElementById('buscaInput').value = '';
             document.getElementById('filtroTurma').value = '';
-            renderizarRanking();
+            renderizarTudo();
         }
 
         function abrirModal(id) { document.getElementById(id).classList.add('show'); }
@@ -550,10 +941,19 @@
             });
         });
 
+        function pegarDataHoje() {
+            const hoje = new Date();
+            const ano = hoje.getFullYear();
+            const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+            const dia = String(hoje.getDate()).padStart(2, '0');
+            return `${ano}-${mes}-${dia}`;
+        }
+
         function abrirModalDoador() {
             document.getElementById('doadorId').value = '';
             document.getElementById('doadorNome').value = '';
             document.getElementById('doadorTurma').value = '';
+            document.getElementById('doadorData').value = pegarDataHoje();
             document.getElementById('doadorBrinquedos').value = 1;
             document.getElementById('doadorPontosPorItem').value = 10;
             document.getElementById('doadorPontosTotal').value = 10;
@@ -567,6 +967,7 @@
             document.getElementById('doadorId').value = d.id;
             document.getElementById('doadorNome').value = d.nome;
             document.getElementById('doadorTurma').value = d.turma || '';
+            document.getElementById('doadorData').value = d.data || pegarDataHoje();
             document.getElementById('doadorBrinquedos').value = d.brinquedos || 0;
             document.getElementById('doadorPontosPorItem').value = d.pontosPorItem || 10;
             document.getElementById('doadorPontosTotal').value = d.pontos || 0;
@@ -578,7 +979,7 @@
             if (!confirm('Tem certeza que deseja excluir este doador?')) return;
             doadores = doadores.filter(d => d.id !== id);
             salvarDados();
-            renderizarRanking();
+            renderizarTudo();
             atualizarStats();
             mostrarToast('✅ Doador excluído!', 'success');
         }
@@ -588,29 +989,31 @@
             const id = document.getElementById('doadorId').value;
             const nome = document.getElementById('doadorNome').value.trim();
             const turma = document.getElementById('doadorTurma').value;
+            const data = document.getElementById('doadorData').value;
             const brinquedos = parseInt(document.getElementById('doadorBrinquedos').value) || 0;
             const pontosPorItem = parseInt(document.getElementById('doadorPontosPorItem').value) || 0;
             const pontos = brinquedos * pontosPorItem;
 
             if (!nome) { mostrarToast('❌ Digite o nome do doador', 'error'); return; }
             if (!turma) { mostrarToast('❌ Selecione a turma', 'error'); return; }
+            if (!data) { mostrarToast('❌ Selecione a data da doação', 'error'); return; }
             if (brinquedos <= 0) { mostrarToast('❌ Quantidade deve ser maior que 0', 'error'); return; }
 
             if (id) {
                 const idx = doadores.findIndex(d => d.id === id);
-                if (idx !== -1) doadores[idx] = { ...doadores[idx], nome, turma, brinquedos, pontosPorItem, pontos };
+                if (idx !== -1) doadores[idx] = { ...doadores[idx], nome, turma, data, brinquedos, pontosPorItem, pontos };
                 mostrarToast('✅ Doador atualizado!', 'success');
             } else {
                 doadores.push({
                     id: 'doador_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
-                    nome, turma, brinquedos, pontosPorItem, pontos
+                    nome, turma, data, brinquedos, pontosPorItem, pontos
                 });
                 mostrarToast('✅ Doador adicionado!', 'success');
             }
 
             salvarDados();
             fecharModal('modalDoador');
-            renderizarRanking();
+            renderizarTudo();
             atualizarStats();
         });
 
@@ -664,7 +1067,7 @@
                 adminFloat.style.display = 'block';
             }
 
-            renderizarRanking();
+            renderizarTudo();
         }
 
         function exportarDados() {
@@ -696,7 +1099,7 @@
                             if (confirm('Isso vai substituir todos os dados. Continuar?')) {
                                 doadores = imported;
                                 salvarDados();
-                                renderizarRanking();
+                                renderizarTudo();
                                 atualizarStats();
                                 mostrarToast('✅ Dados importados!', 'success');
                             }
@@ -717,7 +1120,7 @@
             if (!confirm('⚠️ Confirme: apagar TUDO?')) return;
             doadores = [];
             salvarDados();
-            renderizarRanking();
+            renderizarTudo();
             atualizarStats();
             document.getElementById('buscaInput').value = '';
             document.getElementById('filtroTurma').value = '';
