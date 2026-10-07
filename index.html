@@ -146,14 +146,10 @@
         </div>
     </div>
 
-    <!-- SDK do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
     <script>
-        // ==========================================
-        // CONFIGURAÇÃO DO FIREBASE (JÁ PREENCHIDA)
-        // ==========================================
         const firebaseConfig = {
             apiKey: "AIzaSyCx2cSJAH9L6xgLM_HTRFbPI6_UcT7Dr1o",
             authDomain: "design-lab-natal.firebaseapp.com",
@@ -161,17 +157,18 @@
             projectId: "design-lab-natal",
             storageBucket: "design-lab-natal.firebasestorage.app",
             messagingSenderId: "343066883459",
-            appId: "1:343066883459:web:4e588fc93fc0f1a8e072b6",
-            measurementId: "G-18V88F3NTN"
+            appId: "1:343066883459:web:4e588fc93fc0f1a8e072b6"
         };
 
-        // Inicializar Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-        const dbRef = db.ref('natalData'); // Nó onde os dados ficarão salvos na nuvem
+        try {
+            firebase.initializeApp(firebaseConfig);
+        } catch (e) {
+            alert("Erro ao inicializar o Firebase: " + e.message);
+        }
 
-        // ==========================================
-        
+        const db = firebase.database();
+        const dbRef = db.ref('natalData');
+
         const ADMIN_PASSWORD = "natal123";
         
         const TEAM_MEMBERS = [
@@ -196,11 +193,10 @@
         let donors = [];
         let salas = [...INITIAL_SALAS];
 
-        // --- INICIALIZAÇÃO E SINCRONIZAÇÃO COM A NUVEM ---
         function init() {
             renderTeam();
             
-            // Fica ouvindo mudanças no banco de dados em tempo real
+            // Tenta conectar ao banco. Se der erro de permissão, avisa!
             dbRef.on('value', (snapshot) => {
                 const data = snapshot.val();
                 
@@ -208,10 +204,11 @@
                     donors = data.donors || [];
                     salas = data.salas || INITIAL_SALAS;
                 } else {
-                    // Se o banco estiver vazio (primeira vez), envia os dados iniciais
                     dbRef.set({
                         donors: INITIAL_DONORS,
                         salas: INITIAL_SALAS
+                    }).catch((error) => {
+                        alert("ERRO AO SALVAR: " + error.message + "\n\nVerifique se as Regras (Rules) do Firebase estão como 'true'.");
                     });
                     donors = [...INITIAL_DONORS];
                     salas = [...INITIAL_SALAS];
@@ -220,18 +217,23 @@
                 updateUI();
                 renderSalaDropdowns();
                 renderAdminDonorList();
+            }, (error) => {
+                alert("ERRO AO LER DADOS: " + error.message + "\n\nVerifique as Regras (Rules) e desative o AdBlock.");
+                document.getElementById('rankingContainer').innerHTML = '<p class="empty-state">Erro de conexão. Verifique o console.</p>';
             });
         }
 
-        // Função para salvar na nuvem
         function saveData() {
             dbRef.set({
                 donors: donors,
                 salas: salas
+            }).then(() => {
+                console.log("Dados salvos com sucesso na nuvem!");
+            }).catch((error) => {
+                alert("Erro ao salvar na nuvem: " + error.message);
             });
         }
 
-        // --- FUNÇÕES DO ADMIN ---
         function openAdminLogin() { document.getElementById('loginModal').style.display = 'flex'; document.getElementById('adminPassword').value = ''; }
         function loginAdmin() {
             if (document.getElementById('adminPassword').value === ADMIN_PASSWORD) {
@@ -279,7 +281,6 @@
             }
         }
 
-        // --- RENDERIZAÇÃO ---
         function renderTeam() {
             const teamGrid = document.getElementById('teamGrid');
             teamGrid.innerHTML = '';
