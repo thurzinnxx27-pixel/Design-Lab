@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natal Solidário</title>
+    <title>Design Lab - Natal Solidário</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -44,7 +44,7 @@
             100% { transform: translateY(0px); }
         }
 
-        header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+        header h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 2px; }
         header p { font-size: 1.1rem; opacity: 0.9; }
 
         /* Container Principal */
@@ -89,8 +89,8 @@
         .stat-card .number { font-size: 1.8rem; font-weight: 700; color: #6b46c1; margin-bottom: 5px; }
         .stat-card .label { font-size: 0.85rem; color: #718096; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
 
-        /* Seção de Pesquisa e Ranking */
-        .search-section, .ranking-section {
+        /* Seções (Pesquisa, Ranking, Equipe) */
+        .search-section, .ranking-section, .team-section {
             background: white;
             border-radius: 12px;
             padding: 30px;
@@ -98,7 +98,7 @@
             margin-bottom: 20px;
         }
 
-        .search-section h2, .ranking-section h2 {
+        .search-section h2, .ranking-section h2, .team-section h2 {
             font-size: 1.3rem;
             color: #6b46c1;
             margin-bottom: 20px;
@@ -189,6 +189,30 @@
 
         .empty-state { text-align: center; color: #a0aec0; font-style: italic; padding: 40px 0; }
 
+        /* Seção da Equipe */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .team-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: #6b46c1;
+        }
+
+        .team-card h3 { font-size: 1.1rem; color: #2d3748; margin-bottom: 5px; }
+        .team-card p { font-size: 0.85rem; color: #718096; font-weight: 500; }
+
         /* Rodapé */
         footer {
             text-align: center;
@@ -196,6 +220,15 @@
             color: #718096;
             font-size: 0.9rem;
             margin-top: auto;
+        }
+
+        footer p { margin-bottom: 5px; }
+        
+        .credit-line {
+            margin-top: 15px;
+            font-weight: 600;
+            color: #6b46c1;
+            font-size: 1rem;
         }
 
         .admin-link {
@@ -295,8 +328,8 @@
 
     <header>
         <div class="header-emojis">🎄 🎅 🎁 ⛄ 🦌 ❄️</div>
-        <h1>Natal Solidário</h1>
-        <p>Doe brinquedos e ganhe pontos! Faça uma criança feliz neste Natal ❤️</p>
+        <h1>Design Lab</h1>
+        <p>Natal Solidário - Doe brinquedos e ganhe pontos! Faça uma criança feliz ❤️</p>
     </header>
 
     <div class="container">
@@ -347,11 +380,20 @@
                 <p class="empty-state">Nenhum doador cadastrado ainda. Seja o primeiro a espalhar a magia! ✨🎄</p>
             </div>
         </div>
+
+        <!-- Seção de Equipe (FIXA) -->
+        <div class="team-section">
+            <h2>👥 Nossa Equipe</h2>
+            <div class="team-grid" id="teamGrid">
+                <!-- Preenchido via JavaScript com a lista fixa -->
+            </div>
+        </div>
     </div>
 
     <footer>
         <p>Feito com ❤️ para o Natal</p>
         <p>Campanha de Arrecadação de Brinquedos Natalinos</p>
+        <p class="credit-line">Site criado por Arthur Nass 6°C</p>
         <span class="admin-link" onclick="openAdminLogin()">🔐 Acesso Admin</span>
     </footer>
 
@@ -377,7 +419,7 @@
             <div class="form-group">
                 <label>Adicionar Nova Sala/Turma:</label>
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="newSalaName" placeholder="Ex: 1º Ano A">
+                    <input type="text" id="newSalaName" placeholder="Ex: 4º Ano A">
                     <button class="btn" style="width: auto; margin: 0;" onclick="addSala()">Adicionar</button>
                 </div>
             </div>
@@ -415,12 +457,47 @@
     <script>
         // --- CONFIGURAÇÕES E ESTADO ---
         const ADMIN_PASSWORD = "natal123"; // Altere a senha aqui se quiser
-        let donors = JSON.parse(localStorage.getItem('natalDonors')) || [];
-        let salas = JSON.parse(localStorage.getItem('natalSalas')) || ['Maternal', '1º Ano', '2º Ano'];
+        
+        // LISTA FIXA DA EQUIPE (Sempre vai aparecer, independente do admin)
+        const TEAM_MEMBERS = [
+            { name: 'Arthur Nass', sala: '6°C' },
+            { name: 'Pedro Henrique', sala: '6°B' },
+            { name: 'Arthur Sabino', sala: '6°B' },
+            { name: 'Benjamim Vicente', sala: '6°B' },
+            { name: 'Pedro Jorge', sala: '6°C' }
+        ];
+
+        // Doadores Iniciais (Só é usado na primeira vez que o site abre, para já deixar os nomes cadastrados no admin)
+        const INITIAL_DONORS = TEAM_MEMBERS.map((member, index) => ({
+            id: index + 1,
+            name: member.name,
+            sala: member.sala,
+            points: 0
+        }));
+        
+        // NOVA LISTA DE SALAS: Do 6º ano ao 3º ano, com A, B, C e D
+        const INITIAL_SALAS = [
+            '6°A', '6°B', '6°C', '6°D',
+            '7°A', '7°B', '7°C', '7°D',
+            '8°A', '8°B', '8°C', '8°D',
+            '9°A', '9°B', '9°C', '9°D',
+            '1°A', '1°B', '1°C', '1°D',
+            '2°A', '2°B', '2°C', '2°D',
+            '3°A', '3°B', '3°C', '3°D'
+        ];
+
+        // Carregar dados do localStorage
+        let storedDonors = localStorage.getItem('natalDonors');
+        let donors = storedDonors !== null ? JSON.parse(storedDonors) : [...INITIAL_DONORS];
+
+        let storedSalas = localStorage.getItem('natalSalas');
+        let salas = storedSalas !== null ? JSON.parse(storedSalas) : [...INITIAL_SALAS];
 
         // --- FUNÇÕES DE INICIALIZAÇÃO ---
         function init() {
+            renderTeam(); // Renderiza a equipe FIXA
             updateUI();
+            renderSalaDropdowns();
         }
 
         // --- FUNÇÕES DO ADMIN ---
@@ -516,22 +593,41 @@
         }
 
         function clearAllData() {
-            if (confirm("ATENÇÃO! Isso apagará TODOS os doadores e salas. Tem certeza?")) {
-                donors = [];
-                salas = ['Maternal', '1º Ano', '2º Ano'];
+            if (confirm("ATENÇÃO! Isso apagará TODOS os doadores e pontos. A equipe continuará aparecendo no site. Tem certeza?")) {
+                donors = []; // Esvazia a lista de doadores
+                salas = [...INITIAL_SALAS]; // Reseta as salas para a nova lista completa
                 saveData();
                 renderAdminDonorList();
                 renderSalaDropdowns();
-                alert('Todos os dados foram limpos.');
+                alert('Todos os dados de doadores foram limpos e as turmas foram atualizadas!');
             }
         }
 
         // --- FUNÇÕES DE RENDERIZAÇÃO (UI) ---
+        
+        // Renderiza a Equipe FIXA (Não depende do admin)
+        function renderTeam() {
+            const teamGrid = document.getElementById('teamGrid');
+            if (!teamGrid) return;
+            
+            teamGrid.innerHTML = '';
+            
+            // Renderiza os cartões fixos da equipe
+            TEAM_MEMBERS.forEach(member => {
+                const card = document.createElement('div');
+                card.className = 'team-card';
+                card.innerHTML = `
+                    <h3>${member.name}</h3>
+                    <p>Turma: ${member.sala}</p>
+                `;
+                teamGrid.appendChild(card);
+            });
+        }
+
         function updateUI() {
             // Atualizar Cards
             const totalDoadores = donors.length;
             const totalPontos = donors.reduce((sum, d) => sum + d.points, 0);
-            // Vamos considerar que 1 ponto = 1 brinquedo para simplificar
             const totalBrinquedos = totalPontos; 
 
             document.getElementById('totalDoadores').textContent = totalDoadores;
@@ -546,7 +642,9 @@
             const filterSelect = document.getElementById('filterSala');
             const adminSelect = document.getElementById('newDonorSala');
             
-            // Limpar opções atuais (mantendo a primeira do filtro)
+            if (!filterSelect || !adminSelect) return;
+
+            // Limpar opções atuais
             filterSelect.innerHTML = '<option value="Todas">Todas as turmas</option>';
             adminSelect.innerHTML = '';
 
@@ -565,6 +663,8 @@
 
         function renderAdminDonorList() {
             const container = document.getElementById('adminDonorList');
+            if (!container) return;
+            
             if (donors.length === 0) {
                 container.innerHTML = '<p style="color:#a0aec0; font-style:italic;">Nenhum doador cadastrado.</p>';
                 return;
@@ -599,6 +699,8 @@
             const salaFilter = document.getElementById('filterSala').value;
             const container = document.getElementById('rankingContainer');
 
+            if (!container) return;
+
             // Filtrar
             let filteredDonors = donors.filter(donor => {
                 const matchesName = donor.name.toLowerCase().includes(searchTerm);
@@ -611,7 +713,7 @@
 
             // Renderizar
             if (filteredDonors.length === 0) {
-                container.innerHTML = '<p class="empty-state">Nenhum doador encontrado com esses filtros. 🎄</p>';
+                container.innerHTML = '<p class="empty-state">Nenhum doador encontrado. 🎄</p>';
                 return;
             }
 
