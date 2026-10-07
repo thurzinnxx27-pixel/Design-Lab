@@ -44,16 +44,8 @@
             100% { transform: translateY(0px); }
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+        header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
 
         /* Container Principal */
         .container {
@@ -93,27 +85,11 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .stat-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
+        .stat-card .icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .stat-card .number { font-size: 1.8rem; font-weight: 700; color: #6b46c1; margin-bottom: 5px; }
+        .stat-card .label { font-size: 0.85rem; color: #718096; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
 
-        .stat-card .number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #6b46c1;
-            margin-bottom: 5px;
-        }
-
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: #718096;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* Seção de Pesquisa */
+        /* Seção de Pesquisa e Ranking */
         .search-section, .ranking-section {
             background: white;
             border-radius: 12px;
@@ -151,14 +127,7 @@
             color: #4a5568;
         }
 
-        .search-bar input::placeholder {
-            color: #a0aec0;
-        }
-
-        .search-bar .search-icon {
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
+        .search-bar .search-icon { font-size: 1.2rem; cursor: pointer; }
 
         .filter-row {
             display: flex;
@@ -193,18 +162,32 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .clear-btn:hover {
-            background: #e53e3e;
-            color: white;
+        .clear-btn:hover { background: #e53e3e; color: white; }
+
+        /* Tabela de Ranking */
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
 
-        /* Ranking */
-        .empty-state {
-            text-align: center;
-            color: #a0aec0;
-            font-style: italic;
-            padding: 40px 0;
+        .ranking-table th, .ranking-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
         }
+
+        .ranking-table th {
+            background-color: #f7fafc;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .ranking-table tr:hover { background-color: #f7fafc; }
+
+        .empty-state { text-align: center; color: #a0aec0; font-style: italic; padding: 40px 0; }
 
         /* Rodapé */
         footer {
@@ -215,46 +198,96 @@
             margin-top: auto;
         }
 
-        footer p {
-            margin-bottom: 5px;
+        .admin-link {
+            color: #6b46c1;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: underline;
+            margin-top: 10px;
+            display: inline-block;
         }
 
-        /* Botão Flutuante */
-        .floating-btn {
+        /* Modais (Admin) */
+        .modal-overlay {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-content h2 { color: #c53030; margin-bottom: 20px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; color: #4a5568; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: #6b46c1; }
+
+        .btn {
             background: #6b46c1;
             color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 10px rgba(107, 70, 193, 0.4);
-            cursor: pointer;
             border: none;
-            transition: transform 0.2s;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.2s;
+            width: 100%;
+            margin-top: 10px;
         }
+        .btn:hover { background: #553c9a; }
+        .btn-danger { background: #e53e3e; margin-top: 20px; }
+        .btn-danger:hover { background: #c53030; }
+        .btn-close { background: #a0aec0; margin-top: 10px; }
+        .btn-close:hover { background: #718096; }
 
-        .floating-btn:hover {
-            transform: scale(1.1);
+        /* Admin Dashboard List */
+        .admin-list { margin-top: 20px; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+        .admin-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #f7fafc;
         }
+        .admin-list-item span { font-weight: 500; }
+        .btn-small {
+            background: #276749;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        .btn-small:hover { background: #22543d; }
 
-        /* Responsividade */
         @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-            .filter-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .stats-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+            .filter-row { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -268,7 +301,7 @@
 
     <div class="container">
         <!-- Banner de Boas-vindas -->
-        <div class="welcome-banner">
+        <div class="welcome-banner" id="welcomeBanner">
             🎅 Bem-vindo(a)! Você está no modo <strong>Visitante</strong>. Pesquise seu nome para ver seus pontos!
         </div>
 
@@ -276,17 +309,17 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="icon">👥</div>
-                <div class="number">0</div>
+                <div class="number" id="totalDoadores">0</div>
                 <div class="label">DOADORES</div>
             </div>
             <div class="stat-card">
                 <div class="icon">🎁</div>
-                <div class="number">0</div>
+                <div class="number" id="totalBrinquedos">0</div>
                 <div class="label">BRINQUEDOS</div>
             </div>
             <div class="stat-card">
                 <div class="icon">🌟</div>
-                <div class="number">0</div>
+                <div class="number" id="totalPontos">0</div>
                 <div class="label">PONTOS TOTAIS</div>
             </div>
         </div>
@@ -295,16 +328,13 @@
         <div class="search-section">
             <h2>🔎 Pesquisar Doador</h2>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Digite seu nome para ver seus pontos...">
-                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Digite seu nome para ver seus pontos..." oninput="filterRanking()">
+                <span class="search-icon" onclick="filterRanking()">🔍</span>
             </div>
             <div class="filter-row">
                 <span>🏫 Filtrar por turma:</span>
-                <select>
-                    <option>Todas as turmas</option>
-                    <option>1º Ano</option>
-                    <option>2º Ano</option>
-                    <option>3º Ano</option>
+                <select id="filterSala" onchange="filterRanking()">
+                    <option value="Todas">Todas as turmas</option>
                 </select>
                 <button class="clear-btn" onclick="clearSearch()">🗑️ Limpar</button>
             </div>
@@ -313,23 +343,320 @@
         <!-- Seção de Ranking -->
         <div class="ranking-section">
             <h2>🏆 Ranking de Doadores</h2>
-            <p class="empty-state">Nenhum doador cadastrado ainda. Seja o primeiro a espalhar a magia! ✨🎄</p>
+            <div id="rankingContainer">
+                <p class="empty-state">Nenhum doador cadastrado ainda. Seja o primeiro a espalhar a magia! ✨🎄</p>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>Feito com ❤️ para o Natal</p>
         <p>Campanha de Arrecadação de Brinquedos Natalinos</p>
+        <span class="admin-link" onclick="openAdminLogin()">🔐 Acesso Admin</span>
     </footer>
 
-    <button class="floating-btn">🔒</button>
+    <!-- Modal de Login Admin -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <h2>🔐 Acesso Restrito</h2>
+            <div class="form-group">
+                <label>Senha do Administrador:</label>
+                <input type="password" id="adminPassword" placeholder="Digite a senha...">
+            </div>
+            <button class="btn" onclick="loginAdmin()">Entrar</button>
+            <button class="btn btn-close" onclick="closeModal('loginModal')">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal do Painel Admin -->
+    <div class="modal-overlay" id="adminPanelModal">
+        <div class="modal-content">
+            <h2>⚙️ Painel de Administração</h2>
+            
+            <!-- Adicionar Sala -->
+            <div class="form-group">
+                <label>Adicionar Nova Sala/Turma:</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="newSalaName" placeholder="Ex: 1º Ano A">
+                    <button class="btn" style="width: auto; margin: 0;" onclick="addSala()">Adicionar</button>
+                </div>
+            </div>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+
+            <!-- Adicionar Doador -->
+            <div class="form-group">
+                <label>Nome do Doador:</label>
+                <input type="text" id="newDonorName" placeholder="Nome completo">
+            </div>
+            <div class="form-group">
+                <label>Sala/Turma:</label>
+                <select id="newDonorSala"></select>
+            </div>
+            <div class="form-group">
+                <label>Pontos Iniciais (Brinquedos Doados):</label>
+                <input type="number" id="newDonorPoints" value="0" min="0">
+            </div>
+            <button class="btn" onclick="addDonor()">Cadastrar Doador</button>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+
+            <!-- Lista de Doadores para Adicionar Pontos -->
+            <h3>Gerenciar Doadores</h3>
+            <div class="admin-list" id="adminDonorList">
+                <!-- Preenchido via JS -->
+            </div>
+
+            <button class="btn btn-danger" onclick="clearAllData()">🗑️ Limpar Todos os Dados</button>
+            <button class="btn btn-close" onclick="closeModal('adminPanelModal')">Fechar Painel</button>
+        </div>
+    </div>
 
     <script>
-        // Função simples para limpar o campo de busca
+        // --- CONFIGURAÇÕES E ESTADO ---
+        const ADMIN_PASSWORD = "natal123"; // Altere a senha aqui se quiser
+        let donors = JSON.parse(localStorage.getItem('natalDonors')) || [];
+        let salas = JSON.parse(localStorage.getItem('natalSalas')) || ['Maternal', '1º Ano', '2º Ano'];
+
+        // --- FUNÇÕES DE INICIALIZAÇÃO ---
+        function init() {
+            updateUI();
+        }
+
+        // --- FUNÇÕES DO ADMIN ---
+        function openAdminLogin() {
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function loginAdmin() {
+            const pass = document.getElementById('adminPassword').value;
+            if (pass === ADMIN_PASSWORD) {
+                closeModal('loginModal');
+                openAdminPanel();
+            } else {
+                alert('Senha incorreta! Tente novamente.');
+            }
+        }
+
+        function openAdminPanel() {
+            document.getElementById('adminPanelModal').style.display = 'flex';
+            renderAdminDonorList();
+            renderSalaDropdowns();
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // --- FUNÇÕES DE DADOS (SALVAR/LER) ---
+        function saveData() {
+            localStorage.setItem('natalDonors', JSON.stringify(donors));
+            localStorage.setItem('natalSalas', JSON.stringify(salas));
+            updateUI();
+        }
+
+        function addSala() {
+            const salaName = document.getElementById('newSalaName').value.trim();
+            if (salaName && !salas.includes(salaName)) {
+                salas.push(salaName);
+                document.getElementById('newSalaName').value = '';
+                saveData();
+                renderSalaDropdowns();
+                alert('Sala adicionada com sucesso!');
+            } else if (salas.includes(salaName)) {
+                alert('Essa sala já existe!');
+            }
+        }
+
+        function addDonor() {
+            const name = document.getElementById('newDonorName').value.trim();
+            const sala = document.getElementById('newDonorSala').value;
+            const points = parseInt(document.getElementById('newDonorPoints').value) || 0;
+
+            if (!name) {
+                alert('Por favor, digite o nome do doador.');
+                return;
+            }
+
+            const newDonor = {
+                id: Date.now(), // ID único
+                name: name,
+                sala: sala,
+                points: points
+            };
+
+            donors.push(newDonor);
+            document.getElementById('newDonorName').value = '';
+            document.getElementById('newDonorPoints').value = '0';
+            saveData();
+            renderAdminDonorList();
+            alert('Doador cadastrado com sucesso!');
+        }
+
+        function addPointsToDonor(id) {
+            const pointsToAdd = prompt("Quantos pontos deseja adicionar?");
+            if (pointsToAdd && !isNaN(pointsToAdd)) {
+                const donor = donors.find(d => d.id === id);
+                if (donor) {
+                    donor.points += parseInt(pointsToAdd);
+                    saveData();
+                    renderAdminDonorList();
+                    alert(`Pontos adicionados! ${donor.name} agora tem ${donor.points} pontos.`);
+                }
+            }
+        }
+
+        function removeDonor(id) {
+            if (confirm("Tem certeza que deseja excluir este doador?")) {
+                donors = donors.filter(d => d.id !== id);
+                saveData();
+                renderAdminDonorList();
+            }
+        }
+
+        function clearAllData() {
+            if (confirm("ATENÇÃO! Isso apagará TODOS os doadores e salas. Tem certeza?")) {
+                donors = [];
+                salas = ['Maternal', '1º Ano', '2º Ano'];
+                saveData();
+                renderAdminDonorList();
+                renderSalaDropdowns();
+                alert('Todos os dados foram limpos.');
+            }
+        }
+
+        // --- FUNÇÕES DE RENDERIZAÇÃO (UI) ---
+        function updateUI() {
+            // Atualizar Cards
+            const totalDoadores = donors.length;
+            const totalPontos = donors.reduce((sum, d) => sum + d.points, 0);
+            // Vamos considerar que 1 ponto = 1 brinquedo para simplificar
+            const totalBrinquedos = totalPontos; 
+
+            document.getElementById('totalDoadores').textContent = totalDoadores;
+            document.getElementById('totalBrinquedos').textContent = totalBrinquedos;
+            document.getElementById('totalPontos').textContent = totalPontos;
+
+            // Atualizar Ranking
+            filterRanking();
+        }
+
+        function renderSalaDropdowns() {
+            const filterSelect = document.getElementById('filterSala');
+            const adminSelect = document.getElementById('newDonorSala');
+            
+            // Limpar opções atuais (mantendo a primeira do filtro)
+            filterSelect.innerHTML = '<option value="Todas">Todas as turmas</option>';
+            adminSelect.innerHTML = '';
+
+            salas.forEach(sala => {
+                const option1 = document.createElement('option');
+                option1.value = sala;
+                option1.textContent = sala;
+                filterSelect.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = sala;
+                option2.textContent = sala;
+                adminSelect.appendChild(option2);
+            });
+        }
+
+        function renderAdminDonorList() {
+            const container = document.getElementById('adminDonorList');
+            if (donors.length === 0) {
+                container.innerHTML = '<p style="color:#a0aec0; font-style:italic;">Nenhum doador cadastrado.</p>';
+                return;
+            }
+
+            container.innerHTML = '';
+            // Ordenar por nome
+            const sortedDonors = [...donors].sort((a, b) => a.name.localeCompare(b.name));
+            
+            sortedDonors.forEach(donor => {
+                const div = document.createElement('div');
+                div.className = 'admin-list-item';
+                div.innerHTML = `
+                    <div>
+                        <span>${donor.name}</span> 
+                        <small style="color:#718096;">(${donor.sala})</small>
+                        <br>
+                        <strong style="color:#6b46c1;">${donor.points} pts</strong>
+                    </div>
+                    <div>
+                        <button class="btn-small" onclick="addPointsToDonor(${donor.id})">+ Pontos</button>
+                        <button class="btn-small" style="background:#e53e3e;" onclick="removeDonor(${donor.id})">X</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // --- FUNÇÕES DE BUSCA E FILTRO (PÚBLICO) ---
+        function filterRanking() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const salaFilter = document.getElementById('filterSala').value;
+            const container = document.getElementById('rankingContainer');
+
+            // Filtrar
+            let filteredDonors = donors.filter(donor => {
+                const matchesName = donor.name.toLowerCase().includes(searchTerm);
+                const matchesSala = salaFilter === 'Todas' || donor.sala === salaFilter;
+                return matchesName && matchesSala;
+            });
+
+            // Ordenar por pontos (maior para menor)
+            filteredDonors.sort((a, b) => b.points - a.points);
+
+            // Renderizar
+            if (filteredDonors.length === 0) {
+                container.innerHTML = '<p class="empty-state">Nenhum doador encontrado com esses filtros. 🎄</p>';
+                return;
+            }
+
+            let tableHTML = `
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Nome</th>
+                            <th>Turma</th>
+                            <th>Pontos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            filteredDonors.forEach((donor, index) => {
+                let medal = '';
+                if (index === 0) medal = '🥇 ';
+                else if (index === 1) medal = '🥈 ';
+                else if (index === 2) medal = '🥉 ';
+
+                tableHTML += `
+                    <tr>
+                        <td>${medal}${index + 1}º</td>
+                        <td><strong>${donor.name}</strong></td>
+                        <td>${donor.sala}</td>
+                        <td style="color: #6b46c1; font-weight: bold;">${donor.points}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `</tbody></table>`;
+            container.innerHTML = tableHTML;
+        }
+
         function clearSearch() {
             document.getElementById('searchInput').value = '';
-            document.getElementById('searchInput').focus();
+            document.getElementById('filterSala').value = 'Todas';
+            filterRanking();
         }
+
+        // Inicializar o site
+        init();
+
     </script>
 
 </body>
